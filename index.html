@@ -353,6 +353,78 @@ body.page-home-all main{
 .store-highlight-counter{font-size:11px;color:var(--muted);font-weight:800}
 @media(max-width:960px){.store-highlight-wrap{grid-template-columns:1fr}.store-highlight-poster{min-height:0}.store-highlight-poster img{max-height:240px}.store-highlight h3{font-size:20px}}
 
+
+/* ===== عروض جديدة داخل سلايدر الرئيسية ===== */
+.home-offer-slide{
+  background:
+    radial-gradient(circle at 14% 18%,rgba(255,255,255,.14),transparent 24%),
+    linear-gradient(115deg,#082f45 0%,#0d5966 55%,#1595a0 100%) !important;
+}
+.home-offer-slide.powerbi-slide{
+  background:linear-gradient(115deg,#0b354b,#126474 56%,#2aa5ad) !important;
+}
+.home-offer-slide.cbp-bundle-slide{
+  background:linear-gradient(115deg,#102f45,#0e5b67 54%,#1b939c) !important;
+}
+.offer-slide-visual{min-height:410px}
+.offer-poster-frame{
+  width:min(390px,88%);
+  background:rgba(255,255,255,.10);
+  padding:14px;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 28px 70px rgba(0,0,0,.25);
+  position:relative;
+  transform:rotate(-1.5deg);
+}
+.offer-poster-frame img{
+  width:100%;
+  max-height:360px;
+  object-fit:contain;
+  border-radius:20px;
+  display:block;
+  background:#fff;
+}
+.offer-floating-price{
+  position:absolute;
+  left:-20px;
+  bottom:30px;
+  background:#fff;
+  color:var(--primary-dark);
+  padding:11px 16px;
+  border-radius:13px;
+  font-size:18px;
+  font-weight:900;
+  box-shadow:var(--shadow);
+}
+.offer-mini-stack{
+  width:min(520px,96%);
+  height:390px;
+  position:relative;
+}
+.offer-mini-stack img{
+  position:absolute;
+  width:225px;
+  border-radius:20px;
+  box-shadow:0 25px 55px rgba(0,0,0,.25);
+  border:5px solid rgba(255,255,255,.85);
+  background:#fff;
+}
+.offer-mini-stack img:nth-child(1){right:0;top:52px;transform:rotate(7deg)}
+.offer-mini-stack img:nth-child(2){right:145px;top:5px;transform:rotate(0deg);z-index:2}
+.offer-mini-stack img:nth-child(3){right:285px;top:55px;transform:rotate(-7deg)}
+.bundle-visual .floating-badge{right:auto;left:4%;bottom:28px}
+@media(max-width:760px){
+  .offer-slide-visual{min-height:300px}
+  .offer-poster-frame{width:min(315px,90%)}
+  .offer-poster-frame img{max-height:270px}
+  .offer-floating-price{left:8px;bottom:10px;font-size:15px}
+  .offer-mini-stack{height:285px;width:100%}
+  .offer-mini-stack img{width:155px}
+  .offer-mini-stack img:nth-child(1){right:3%;top:55px}
+  .offer-mini-stack img:nth-child(2){right:calc(50% - 78px);top:12px}
+  .offer-mini-stack img:nth-child(3){right:auto;left:3%;top:55px}
+}
 </style>
 </head>
 <body class="page-home-all">
@@ -430,8 +502,64 @@ body.page-home-all main{
 </div>
 </div>
 </article>
+<article class="slide home-offer-slide">
+<div class="container slide-grid">
+<div>
+<span class="hero-kicker">🔥 عرض العودة للمدارس · خصم 27%</span>
+<h1>طوّر مهاراتك في<br/><em>الذكاء الاصطناعي</em></h1>
+<p>باقة تدريب واختبار لشهادة محترف أعمال معتمد في الذكاء الاصطناعي CBP-AI بسعر 2,299 ر.س بدل 3,165 ر.س.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="store.html">استفد من العرض</a>
+<a class="hero-secondary" href="store.html#store-certificates">عرض كل العروض</a>
 </div>
-<div class="slide-dots" id="slideDots"><button aria-label="الشريحة الأولى" class="slide-dot active"></button><button aria-label="الشريحة الثانية" class="slide-dot"></button><button aria-label="الشريحة الثالثة" class="slide-dot"></button></div>
+</div>
+<div class="visual offer-slide-visual">
+<div class="offer-poster-frame">
+<img alt="عرض CBP-AI" src="assets/CBP-AI-offer.png"/>
+<span class="offer-floating-price">2,299 ر.س</span>
+</div>
+</div>
+</div>
+</article><article class="slide home-offer-slide powerbi-slide">
+<div class="container slide-grid">
+<div>
+<span class="hero-kicker">📊 عرض العودة للمدارس · خصم 27%</span>
+<h1>حوّل البيانات إلى<br/><em>قرارات أقوى</em></h1>
+<p>تدريب واختبار شهادة تحليل البيانات باستخدام Power BI من IBTA بسعر 2,299 ر.س بدل 3,165 ر.س.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="store.html">استفد من العرض</a>
+<a class="hero-secondary" href="store.html#store-certificates">عرض كل العروض</a>
+</div>
+</div>
+<div class="visual offer-slide-visual">
+<div class="offer-poster-frame">
+<img alt="عرض Power BI" src="assets/POWER-BI-offer.png"/>
+<span class="offer-floating-price">2,299 ر.س</span>
+</div>
+</div>
+</div>
+</article><article class="slide home-offer-slide cbp-bundle-slide">
+<div class="container slide-grid">
+<div>
+<span class="hero-kicker">🎯 اختبارات شهادات احترافية · خصم 11%</span>
+<h1>اختر مسارك في<br/><em>الأعمال والقيادة</em></h1>
+<p>اختبارات CBP في القيادة الإدارية وخدمة العملاء والمبيعات بسعر 899 ر.س لكل اختبار بدل 1,010 ر.س.</p>
+<div class="hero-actions">
+<a class="hero-primary" href="store.html">تصفح عروض CBP</a>
+<a class="hero-secondary" href="store.html#store-certificates">جميع العروض</a>
+</div>
+</div>
+<div class="visual offer-slide-visual bundle-visual">
+<div class="offer-mini-stack">
+<img alt="عرض CBP-LS" src="assets/CBP-LS-offer.png"/>
+<img alt="عرض CBP-CS" src="assets/CBP-CS-offer.png"/>
+<img alt="عرض CBP-S" src="assets/CBP-S-offer.png"/>
+</div>
+<div class="floating-badge">3 اختبارات · 899 ر.س لكل اختبار</div>
+</div>
+</div>
+</article></div>
+<div class="slide-dots" id="slideDots"><button aria-label="الشريحة الأولى" class="slide-dot active"></button><button aria-label="الشريحة الثانية" class="slide-dot"></button><button aria-label="الشريحة الثالثة" class="slide-dot"></button><button aria-label="الشريحة الرابعة" class="slide-dot"></button><button aria-label="الشريحة الخامسة" class="slide-dot"></button><button aria-label="الشريحة السادسة" class="slide-dot"></button></div>
 </section>
 <div class="container stats-wrap">
 <div class="stats">
@@ -840,7 +968,7 @@ body.page-home-all main{
 
     const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.slide-dot')];let slideIndex=0,slideTimer;
     function showSlide(i){slideIndex=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===slideIndex));dots.forEach((d,n)=>d.classList.toggle('active',n===slideIndex))}
-    function autoSlide(){clearInterval(slideTimer);slideTimer=setInterval(()=>showSlide(slideIndex+1),6500)}
+    function autoSlide(){clearInterval(slideTimer);slideTimer=setInterval(()=>showSlide(slideIndex+1),5600)}
     dots.forEach((d,i)=>d.addEventListener('click',()=>{showSlide(i);autoSlide()}));autoSlide();
     document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('siteHeader').classList.toggle('mobile-open'));
     document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('siteHeader').classList.remove('mobile-open')));
