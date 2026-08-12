@@ -289,6 +289,36 @@ body.page-home-all main > .stats-wrap{
 body.page-home-all main{
   min-height:auto;
 }
+
+
+/* ===== Preparatory books posters ===== */
+.books-poster-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.prep-book-card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 34px rgba(15,55,76,.08);display:flex;flex-direction:column;transition:.24s}
+.prep-book-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(15,55,76,.14)}
+.prep-book-media{background:#f3f6f7;padding:18px 18px 10px}
+.prep-book-media img{width:100%;border-radius:18px;display:block}
+.prep-book-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.prep-book-tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.prep-book-tags span{font-size:11px;color:#506b78;background:#f2f6f7;border-radius:999px;padding:6px 10px}
+.prep-book-card h3{margin:0 0 8px;color:var(--navy);font-size:18px;line-height:1.7}
+.prep-book-code{direction:ltr;color:var(--muted);font-size:12px;margin-bottom:14px}
+.prep-book-price{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.prep-book-price strong{color:var(--primary-dark);font-size:34px;line-height:1;font-weight:900}
+.prep-book-price span{color:var(--muted);font-size:12px;font-weight:800}
+.prep-book-btn{width:100%;border:0;border-radius:12px;padding:13px 14px;background:var(--primary);color:#fff;font-weight:900;font-size:15px}
+.prep-book-btn:hover{background:var(--primary-dark)}
+.books-page-hero{padding:58px 0 18px;background:linear-gradient(180deg,#eef8f8 0%,#f6f8f9 100%)}
+.books-page-box{background:linear-gradient(135deg,var(--navy-dark),var(--primary));color:#fff;border-radius:24px;padding:34px 34px 30px;box-shadow:var(--shadow)}
+.books-page-box small{display:inline-flex;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:7px 12px;border-radius:999px;font-weight:900;font-size:12px;color:#d8eff1}
+.books-page-box h1{margin:14px 0 10px;font-size:clamp(28px,4vw,46px);line-height:1.35}
+.books-page-box p{margin:0;color:#dcebee;max-width:760px}
+.books-page-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.books-page-actions a{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:10px;font-weight:900}
+.books-page-actions .solid{background:#fff;color:var(--navy)}
+.books-page-actions .ghost{border:1px solid rgba(255,255,255,.35);color:#fff}
+@media(max-width:1120px){.books-poster-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.books-poster-grid{grid-template-columns:1fr}.prep-book-price strong{font-size:30px}.books-page-box{padding:24px 20px}}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -482,39 +512,41 @@ body.page-home-all main{
 <p>مقرر اللغة الإنجليزية للسنة التحضيرية (1) حسب المسار.</p>
 </div>
 </div>
-<div class="store-grid">
-<article class="store-card" data-store-category="book">
-<div class="store-card-cover books"><span class="store-symbol">MED</span></div>
-<div class="store-card-body">
-<div class="store-tags"><span>كتاب مقرر دراسي</span><span>المسار الصحي</span></div>
+
+<div class="books-poster-grid">
+<article class="prep-book-card">
+<div class="prep-book-media"><img alt="بوستر كتاب المسار الصحي" src="assets/ELS-MED-poster.png"/></div>
+<div class="prep-book-body">
+<div class="prep-book-tags"><span>كتاب مقرر دراسي</span><span>المسار الصحي</span></div>
 <h3>مقرر اللغة الإنجليزية للسنة التحضيرية (1) — المسار الصحي</h3>
-<div class="store-code">ELS-MED</div>
-<div class="store-price"><strong>247 ر.س</strong></div>
-<button class="store-buy" onclick="chooseStoreProduct('ELS-MED')">طلب الكتاب</button>
+<div class="prep-book-code">ELS-MED</div>
+<div class="prep-book-price"><span>السعر</span><strong>247 ر.س</strong></div>
+<button class="prep-book-btn" onclick="chooseStoreProduct('ELS-MED')">طلب الكتاب</button>
 </div>
 </article>
-<article class="store-card" data-store-category="book">
-<div class="store-card-cover books"><span class="store-symbol">ENG</span></div>
-<div class="store-card-body">
-<div class="store-tags"><span>كتاب مقرر دراسي</span><span>المسار الهندسي</span></div>
+<article class="prep-book-card">
+<div class="prep-book-media"><img alt="بوستر كتاب المسار الهندسي" src="assets/ELS-ENG-poster.png"/></div>
+<div class="prep-book-body">
+<div class="prep-book-tags"><span>كتاب مقرر دراسي</span><span>المسار الهندسي</span></div>
 <h3>مقرر اللغة الإنجليزية للسنة التحضيرية (1) — المسار الهندسي</h3>
-<div class="store-code">ELS-ENG</div>
-<div class="store-price"><strong>230 ر.س</strong></div>
-<button class="store-buy" onclick="chooseStoreProduct('ELS-ENG')">طلب الكتاب</button>
+<div class="prep-book-code">ELS-ENG</div>
+<div class="prep-book-price"><span>السعر</span><strong>230 ر.س</strong></div>
+<button class="prep-book-btn" onclick="chooseStoreProduct('ELS-ENG')">طلب الكتاب</button>
 </div>
 </article>
-<article class="store-card" data-store-category="book">
-<div class="store-card-cover books"><span class="store-symbol">GEN</span></div>
-<div class="store-card-body">
-<div class="store-tags"><span>كتاب مقرر دراسي</span><span>المسار العام</span></div>
+<article class="prep-book-card">
+<div class="prep-book-media"><img alt="بوستر كتاب المسار العام" src="assets/ELS-GEN-poster.png"/></div>
+<div class="prep-book-body">
+<div class="prep-book-tags"><span>كتاب مقرر دراسي</span><span>المسار العام</span></div>
 <h3>مقرر اللغة الإنجليزية للسنة التحضيرية (1) — المسار العام</h3>
-<div class="store-code">ELS-GEN</div>
-<div class="store-price"><strong>230 ر.س</strong></div>
-<button class="store-buy" onclick="chooseStoreProduct('ELS-GEN')">طلب الكتاب</button>
+<div class="prep-book-code">ELS-GEN</div>
+<div class="prep-book-price"><span>السعر</span><strong>230 ر.س</strong></div>
+<button class="prep-book-btn" onclick="chooseStoreProduct('ELS-GEN')">طلب الكتاب</button>
 </div>
 </article>
 </div>
-<div class="store-note">ملاحظة: زر الشراء/التسجيل يوجّه حالياً إلى قناة التسجيل الحالية في الموقع. عند توفر رابط بوابة دفع أو نموذج شراء رسمي، يمكن استبداله مباشرة بدون تغيير تصميم المتجر.</div>
+
+<div class="store-note">ملاحظة: تم عرض كتب السنة التحضيرية باستخدام البوسترات الرسمية. زر الطلب يوجّه حالياً إلى قناة التسجيل الحالية في الموقع، ويمكن ربطه لاحقاً ببوابة شراء أو نموذج رسمي.</div>
 </div>
 </section>
 <section class="section" id="colleges">
