@@ -290,6 +290,27 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 .offer-logo-line b{font-size:13px;color:var(--navy)}
 @media(max-width:760px){.store-card-cover.offer-cover{padding:12px}.offer-logo-line img{width:34px;height:34px}}
 
+
+
+/* ===== Interactive store hero offers ===== */
+.store-highlight{position:relative;overflow:hidden}
+.store-highlight-wrap{display:grid;grid-template-columns:.88fr 1.12fr;gap:18px;align-items:center}
+.store-highlight-poster{background:#f4f7f8;border:1px solid #e7eff2;border-radius:18px;padding:12px;display:flex;align-items:center;justify-content:center;min-height:320px}
+.store-highlight-poster img{max-width:100%;max-height:292px;display:block;border-radius:14px;box-shadow:0 14px 26px rgba(15,55,76,.12)}
+.store-highlight-content{display:flex;flex-direction:column}
+.store-highlight-top{margin-bottom:12px}
+.store-highlight h3{font-size:24px;line-height:1.55;margin:0 0 10px}
+.store-highlight .store-type{font-size:13px;margin-bottom:12px}
+.store-highlight-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px}
+.store-highlight-nav{display:flex;align-items:center;gap:8px}
+.store-hero-arrow{width:38px;height:38px;border-radius:50%;border:1px solid #d4e3e7;background:#fff;color:var(--navy);font-size:18px;font-weight:900;display:grid;place-items:center;cursor:pointer;transition:.2s}
+.store-hero-arrow:hover{background:var(--soft)}
+.store-highlight-dots{display:flex;gap:7px;flex-wrap:wrap}
+.store-highlight-dot{width:9px;height:9px;border-radius:50%;background:#cfe1e6;border:0;padding:0;cursor:pointer;transition:.2s}
+.store-highlight-dot.active{background:var(--primary-dark);transform:scale(1.25)}
+.store-highlight-counter{font-size:11px;color:var(--muted);font-weight:800}
+@media(max-width:960px){.store-highlight-wrap{grid-template-columns:1fr}.store-highlight-poster{min-height:0}.store-highlight-poster img{max-height:240px}.store-highlight h3{font-size:20px}}
+
 </style>
 </head>
 <body class="page-store">
@@ -401,14 +422,29 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 </div>
 </div>
 <div class="store-highlight">
-<div class="store-highlight-top">
-<span class="store-highlight-code">CBP-AI</span>
-<span class="store-highlight-discount">خصم 27%</span>
+<div class="store-highlight-wrap">
+<div class="store-highlight-poster">
+<img alt="عرض محترف" id="storeHeroImage" src="assets/CBP-AI-offer.png"/>
 </div>
-<h3>محترف أعمال معتمد في الذكاء الاصطناعي</h3>
-<div class="store-type">تدريب + اختبار شهادة احترافية</div>
-<div class="store-price"><del>3,165 ر.س</del><strong>2,299 ر.س</strong><span class="store-save">وفر 866 ر.س</span></div>
-<button class="store-buy" onclick="chooseStoreProduct('CBP-AI')">التسجيل في العرض</button>
+<div class="store-highlight-content">
+<div class="store-highlight-top">
+<span class="store-highlight-code" id="storeHeroCode">CBP-AI</span>
+<span class="store-highlight-discount" id="storeHeroDiscount">خصم 27%</span>
+</div>
+<h3 id="storeHeroTitle">محترف أعمال معتمد في الذكاء الاصطناعي</h3>
+<div class="store-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
+<div class="store-price"><del id="storeHeroOldPrice">3,165 ر.س</del><strong id="storeHeroNewPrice">2,299 ر.س</strong><span class="store-save" id="storeHeroSave">وفر 866 ر.س</span></div>
+<button class="store-buy" id="storeHeroBtn" onclick="chooseStoreProduct('CBP-AI')">التسجيل في العرض</button>
+<div class="store-highlight-controls">
+<div class="store-highlight-nav">
+<button aria-label="العرض السابق" class="store-hero-arrow" id="storeHeroPrev">›</button>
+<div class="store-highlight-dots" id="storeHeroDots"></div>
+<button aria-label="العرض التالي" class="store-hero-arrow" id="storeHeroNext">‹</button>
+</div>
+<div class="store-highlight-counter" id="storeHeroCounter">1 / 5</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -793,6 +829,65 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
       if(applied.length){setTimeout(()=>document.getElementById('catalog').scrollIntoView({behavior:'smooth',block:'start'}),180)}
     }
     applyIncomingFilters();
+
+
+    // متجر محترف: بطاقة العروض الرئيسية التفاعلية
+    const storeHeroOffers=[
+      {code:'CBP-LS',title:'شهادة محترف أعمال معتمد في القيادة الإدارية',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'899 ر.س',save:'وفر 111 ر.س',discount:'خصم 11%',image:'assets/CBP-LS-offer.png'},
+      {code:'CBP-CS',title:'شهادة محترف أعمال معتمد في خدمة العملاء',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'899 ر.س',save:'وفر 111 ر.س',discount:'خصم 11%',image:'assets/CBP-CS-offer.png'},
+      {code:'CBP-S',title:'شهادة محترف أعمال معتمد في المبيعات',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'899 ر.س',save:'وفر 111 ر.س',discount:'خصم 11%',image:'assets/CBP-S-offer.png'},
+      {code:'CBP-AI',title:'شهادة محترف أعمال معتمد في الذكاء الاصطناعي',type:'تدريب + اختبار شهادة احترافية',oldPrice:'3,165 ر.س',newPrice:'2,299 ر.س',save:'وفر 866 ر.س',discount:'خصم 27%',image:'assets/CBP-AI-offer.png'},
+      {code:'POWER-BI',title:'شهادة تحليل البيانات باستخدام Power BI من IBTA',type:'تدريب + اختبار شهادة احترافية',oldPrice:'3,165 ر.س',newPrice:'2,299 ر.س',save:'وفر 866 ر.س',discount:'خصم 27%',image:'assets/POWER-BI-offer.png'}
+    ];
+    let storeHeroIndex=0,storeHeroTimer;
+    const storeHeroRefs={
+      image:document.getElementById('storeHeroImage'),
+      code:document.getElementById('storeHeroCode'),
+      discount:document.getElementById('storeHeroDiscount'),
+      title:document.getElementById('storeHeroTitle'),
+      type:document.getElementById('storeHeroType'),
+      oldPrice:document.getElementById('storeHeroOldPrice'),
+      newPrice:document.getElementById('storeHeroNewPrice'),
+      save:document.getElementById('storeHeroSave'),
+      btn:document.getElementById('storeHeroBtn'),
+      dots:document.getElementById('storeHeroDots'),
+      counter:document.getElementById('storeHeroCounter'),
+      prev:document.getElementById('storeHeroPrev'),
+      next:document.getElementById('storeHeroNext')
+    };
+    function renderStoreHero(index){
+      if(!storeHeroRefs.image) return;
+      storeHeroIndex=(index+storeHeroOffers.length)%storeHeroOffers.length;
+      const offer=storeHeroOffers[storeHeroIndex];
+      storeHeroRefs.image.src=offer.image;
+      storeHeroRefs.image.alt='ملصق '+offer.code;
+      storeHeroRefs.code.textContent=offer.code;
+      storeHeroRefs.discount.textContent=offer.discount;
+      storeHeroRefs.title.textContent=offer.title;
+      storeHeroRefs.type.textContent=offer.type;
+      storeHeroRefs.oldPrice.textContent=offer.oldPrice;
+      storeHeroRefs.newPrice.textContent=offer.newPrice;
+      storeHeroRefs.save.textContent=offer.save;
+      storeHeroRefs.btn.setAttribute('onclick',`chooseStoreProduct('${offer.code}')`);
+      storeHeroRefs.counter.textContent=`${storeHeroIndex+1} / ${storeHeroOffers.length}`;
+      [...storeHeroRefs.dots.children].forEach((dot,i)=>dot.classList.toggle('active',i===storeHeroIndex));
+    }
+    function restartStoreHero(){clearInterval(storeHeroTimer);storeHeroTimer=setInterval(()=>renderStoreHero(storeHeroIndex+1),4200)}
+    if(storeHeroRefs.dots){
+      storeHeroOffers.forEach((offer,i)=>{
+        const dot=document.createElement('button');
+        dot.className='store-highlight-dot'+(i===0?' active':'');
+        dot.type='button';
+        dot.setAttribute('aria-label','عرض '+offer.code);
+        dot.addEventListener('click',()=>{renderStoreHero(i);restartStoreHero()});
+        storeHeroRefs.dots.appendChild(dot);
+      });
+      storeHeroRefs.prev?.addEventListener('click',()=>{renderStoreHero(storeHeroIndex-1);restartStoreHero()});
+      storeHeroRefs.next?.addEventListener('click',()=>{renderStoreHero(storeHeroIndex+1);restartStoreHero()});
+      renderStoreHero(0);
+      restartStoreHero();
+    }
+
 
     // متجر محترف: فلترة العروض وربط الاختيار بقناة التسجيل الحالية
     const storeTabs=[...document.querySelectorAll('.store-tab')];
