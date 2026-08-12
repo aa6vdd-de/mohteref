@@ -319,6 +319,19 @@ body.page-home-all main{
 @media(max-width:1120px){.books-poster-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.books-poster-grid{grid-template-columns:1fr}.prep-book-price strong{font-size:30px}.books-page-box{padding:24px 20px}}
 
+
+
+/* ===== Offer card posters / logos ===== */
+.store-card-cover.offer-cover{height:auto;min-height:0;background:#eef4f6;padding:14px;display:block}
+.store-card-cover.offer-cover:before{display:none}
+.store-card-cover.offer-cover img{width:100%;display:block;border-radius:16px;box-shadow:0 10px 24px rgba(15,55,76,.10)}
+.store-card-cover.offer-cover .store-symbol{display:none}
+.store-card-cover.offer-cover .store-discount{top:22px;left:22px;background:#0ff0cf;color:#083a46;box-shadow:0 5px 14px rgba(15,142,155,.18)}
+.offer-logo-line{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.offer-logo-line img{width:38px;height:38px;border-radius:10px;object-fit:cover;box-shadow:0 6px 16px rgba(15,55,76,.12)}
+.offer-logo-line b{font-size:13px;color:var(--navy)}
+@media(max-width:760px){.store-card-cover.offer-cover{padding:12px}.offer-logo-line img{width:34px;height:34px}}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -455,9 +468,9 @@ body.page-home-all main{
 </div>
 <div class="store-grid">
 <article class="store-card" data-store-category="exam">
-<div class="store-card-cover"><span class="store-discount">خصم 11%</span><span class="store-symbol">LS</span></div>
+<div class="store-card-cover offer-cover"><span class="store-discount">خصم 11%</span><img alt="ملصق CBP-LS" src="assets/CBP-LS-offer.png"/></div>
 <div class="store-card-body">
-<div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
+<div class="offer-logo-line"><img alt="شعار CBP-LS" src="assets/CBP-LS-offer.png"/><b>CBP-LS</b></div><div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
 <h3>شهادة محترف أعمال معتمد في القيادة الإدارية</h3>
 <div class="store-code">CBP-LS</div>
 <div class="store-price"><del>1,010 ر.س</del><strong>899 ر.س</strong></div>
@@ -465,9 +478,9 @@ body.page-home-all main{
 </div>
 </article>
 <article class="store-card" data-store-category="exam">
-<div class="store-card-cover"><span class="store-discount">خصم 11%</span><span class="store-symbol">CS</span></div>
+<div class="store-card-cover offer-cover"><span class="store-discount">خصم 11%</span><img alt="ملصق CBP-CS" src="assets/CBP-CS-offer.png"/></div>
 <div class="store-card-body">
-<div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
+<div class="offer-logo-line"><img alt="شعار CBP-CS" src="assets/CBP-CS-offer.png"/><b>CBP-CS</b></div><div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
 <h3>شهادة محترف أعمال معتمد في خدمة العملاء</h3>
 <div class="store-code">CBP-CS</div>
 <div class="store-price"><del>1,010 ر.س</del><strong>899 ر.س</strong></div>
@@ -475,9 +488,9 @@ body.page-home-all main{
 </div>
 </article>
 <article class="store-card" data-store-category="exam">
-<div class="store-card-cover"><span class="store-discount">خصم 11%</span><span class="store-symbol">S</span></div>
+<div class="store-card-cover offer-cover"><span class="store-discount">خصم 11%</span><img alt="ملصق CBP-S" src="assets/CBP-S-offer.png"/></div>
 <div class="store-card-body">
-<div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
+<div class="offer-logo-line"><img alt="شعار CBP-S" src="assets/CBP-S-offer.png"/><b>CBP-S</b></div><div class="store-tags"><span>اختبار شهادة</span><span>احترافية</span></div>
 <h3>شهادة محترف أعمال معتمد في المبيعات</h3>
 <div class="store-code">CBP-S</div>
 <div class="store-price"><del>1,010 ر.س</del><strong>899 ر.س</strong></div>
@@ -485,9 +498,9 @@ body.page-home-all main{
 </div>
 </article>
 <article class="store-card" data-store-category="training">
-<div class="store-card-cover"><span class="store-discount">خصم 27%</span><span class="store-symbol">AI</span></div>
+<div class="store-card-cover offer-cover"><span class="store-discount">خصم 27%</span><img alt="ملصق CBP-AI" src="assets/CBP-AI-offer.png"/></div>
 <div class="store-card-body">
-<div class="store-tags"><span>تدريب + اختبار</span><span>ذكاء اصطناعي</span></div>
+<div class="offer-logo-line"><img alt="شعار CBP-AI" src="assets/CBP-AI-offer.png"/><b>CBP-AI</b></div><div class="store-tags"><span>تدريب + اختبار</span><span>ذكاء اصطناعي</span></div>
 <h3>شهادة محترف أعمال معتمد في الذكاء الاصطناعي</h3>
 <div class="store-code">CBP-AI</div>
 <div class="store-price"><del>3,165 ر.س</del><strong>2,299 ر.س</strong></div>
@@ -495,9 +508,9 @@ body.page-home-all main{
 </div>
 </article>
 <article class="store-card" data-store-category="training">
-<div class="store-card-cover"><span class="store-discount">خصم 27%</span><span class="store-symbol">BI</span></div>
+<div class="store-card-cover offer-cover"><span class="store-discount">خصم 27%</span><img alt="ملصق POWER BI" src="assets/POWER-BI-offer.png"/></div>
 <div class="store-card-body">
-<div class="store-tags"><span>تدريب + اختبار</span><span>تحليل بيانات</span></div>
+<div class="offer-logo-line"><img alt="شعار POWER BI" src="assets/POWER-BI-offer.png"/><b>POWER BI</b></div><div class="store-tags"><span>تدريب + اختبار</span><span>تحليل بيانات</span></div>
 <h3>شهادة تحليل البيانات باستخدام Power BI من IBTA</h3>
 <div class="store-code">POWER BI</div>
 <div class="store-price"><del>3,165 ر.س</del><strong>2,299 ر.س</strong></div>
@@ -512,7 +525,6 @@ body.page-home-all main{
 <p>مقرر اللغة الإنجليزية للسنة التحضيرية (1) حسب المسار.</p>
 </div>
 </div>
-
 <div class="books-poster-grid">
 <article class="prep-book-card">
 <div class="prep-book-media"><img alt="بوستر كتاب المسار الصحي" src="assets/ELS-MED-poster.png"/></div>
@@ -545,7 +557,6 @@ body.page-home-all main{
 </div>
 </article>
 </div>
-
 <div class="store-note">ملاحظة: تم عرض كتب السنة التحضيرية باستخدام البوسترات الرسمية. زر الطلب يوجّه حالياً إلى قناة التسجيل الحالية في الموقع، ويمكن ربطه لاحقاً ببوابة شراء أو نموذج رسمي.</div>
 </div>
 </section>
