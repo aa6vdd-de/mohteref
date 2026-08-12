@@ -353,6 +353,41 @@ body.page-home-all main{
 .store-highlight-counter{font-size:11px;color:var(--muted);font-weight:800}
 @media(max-width:960px){.store-highlight-wrap{grid-template-columns:1fr}.store-highlight-poster{min-height:0}.store-highlight-poster img{max-height:240px}.store-highlight h3{font-size:20px}}
 
+
+
+/* ===== Clean interactive hero refinement ===== */
+.store-hero{padding:34px 36px}
+.store-hero-grid{grid-template-columns:1.05fr .95fr;gap:32px}
+.store-highlight{padding:18px;border-radius:22px;box-shadow:0 22px 60px rgba(0,0,0,.18)}
+.store-highlight-wrap{display:grid;grid-template-columns:210px 1fr;gap:20px;align-items:center}
+.store-highlight-poster{background:linear-gradient(180deg,#f8fbfc,#eef4f6);border:1px solid #e1eaed;border-radius:18px;padding:12px;min-height:0}
+.store-highlight-poster img{width:100%;height:300px;object-fit:cover;border-radius:14px;box-shadow:none;transition:opacity .32s ease,transform .32s ease}
+.store-highlight-content{min-width:0}
+.store-highlight-top{margin-bottom:10px}
+.store-highlight h3{font-size:clamp(21px,2vw,29px);line-height:1.55;margin:0 0 9px}
+.store-highlight .store-type{font-size:13px;margin-bottom:10px}
+.store-highlight .store-price{margin:6px 0 15px}
+.store-highlight .store-price strong{font-size:31px}
+.store-highlight .store-buy{min-height:52px;border-radius:12px;font-size:15px}
+.store-highlight-controls{display:none!important}
+.store-highlight.is-changing .store-highlight-poster img{opacity:.15;transform:scale(.97)}
+.store-highlight.is-changing .store-highlight-content{opacity:.45;transform:translateY(4px)}
+.store-highlight-content{transition:opacity .28s ease,transform .28s ease}
+.store-hero-actions a{padding:12px 18px}
+@media(max-width:1100px){
+  .store-hero-grid{grid-template-columns:1fr}
+  .store-highlight-wrap{grid-template-columns:190px 1fr}
+}
+@media(max-width:760px){
+  .store-hero{padding:24px 18px}
+  .store-highlight{padding:14px}
+  .store-highlight-wrap{grid-template-columns:1fr}
+  .store-highlight-poster{padding:10px}
+  .store-highlight-poster img{height:auto;max-height:none;object-fit:contain}
+  .store-highlight h3{font-size:21px}
+  .store-highlight .store-price strong{font-size:28px}
+}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -477,14 +512,7 @@ body.page-home-all main{
 <div class="store-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
 <div class="store-price"><del id="storeHeroOldPrice">3,165 ر.س</del><strong id="storeHeroNewPrice">2,299 ر.س</strong><span class="store-save" id="storeHeroSave">وفر 866 ر.س</span></div>
 <button class="store-buy" id="storeHeroBtn" onclick="chooseStoreProduct('CBP-AI')">التسجيل في العرض</button>
-<div class="store-highlight-controls">
-<div class="store-highlight-nav">
-<button aria-label="العرض السابق" class="store-hero-arrow" id="storeHeroPrev">›</button>
-<div class="store-highlight-dots" id="storeHeroDots"></div>
-<button aria-label="العرض التالي" class="store-hero-arrow" id="storeHeroNext">‹</button>
-</div>
-<div class="store-highlight-counter" id="storeHeroCounter">1 / 5</div>
-</div>
+
 </div>
 </div>
 </div>
@@ -892,10 +920,6 @@ body.page-home-all main{
       newPrice:document.getElementById('storeHeroNewPrice'),
       save:document.getElementById('storeHeroSave'),
       btn:document.getElementById('storeHeroBtn'),
-      dots:document.getElementById('storeHeroDots'),
-      counter:document.getElementById('storeHeroCounter'),
-      prev:document.getElementById('storeHeroPrev'),
-      next:document.getElementById('storeHeroNext')
     };
     function renderStoreHero(index){
       if(!storeHeroRefs.image) return;
@@ -911,22 +935,16 @@ body.page-home-all main{
       storeHeroRefs.newPrice.textContent=offer.newPrice;
       storeHeroRefs.save.textContent=offer.save;
       storeHeroRefs.btn.setAttribute('onclick',`chooseStoreProduct('${offer.code}')`);
-      storeHeroRefs.counter.textContent=`${storeHeroIndex+1} / ${storeHeroOffers.length}`;
-      [...storeHeroRefs.dots.children].forEach((dot,i)=>dot.classList.toggle('active',i===storeHeroIndex));
     }
     function restartStoreHero(){clearInterval(storeHeroTimer);storeHeroTimer=setInterval(()=>renderStoreHero(storeHeroIndex+1),4200)}
-    if(storeHeroRefs.dots){
-      storeHeroOffers.forEach((offer,i)=>{
-        const dot=document.createElement('button');
-        dot.className='store-highlight-dot'+(i===0?' active':'');
-        dot.type='button';
-        dot.setAttribute('aria-label','عرض '+offer.code);
-        dot.addEventListener('click',()=>{renderStoreHero(i);restartStoreHero()});
-        storeHeroRefs.dots.appendChild(dot);
-      });
-      storeHeroRefs.prev?.addEventListener('click',()=>{renderStoreHero(storeHeroIndex-1);restartStoreHero()});
-      storeHeroRefs.next?.addEventListener('click',()=>{renderStoreHero(storeHeroIndex+1);restartStoreHero()});
-      renderStoreHero(0);
+    if(storeHeroRefs.image){
+      const heroBox=storeHeroRefs.image.closest('.store-highlight');
+      const baseRender=renderStoreHero;
+      renderStoreHero=function(index){
+        if(heroBox) heroBox.classList.add('is-changing');
+        setTimeout(()=>{baseRender(index);if(heroBox) heroBox.classList.remove('is-changing')},180);
+      };
+      baseRender(0);
       restartStoreHero();
     }
 
