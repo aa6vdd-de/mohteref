@@ -425,6 +425,128 @@ body.page-home-all main{
   .offer-mini-stack img:nth-child(2){right:calc(50% - 78px);top:12px}
   .offer-mini-stack img:nth-child(3){right:auto;left:3%;top:55px}
 }
+
+
+/* ===== واجهة عروض مندمجة مع هوية الصفحة ===== */
+.store-hero{
+  padding:42px 44px;
+  background:
+    radial-gradient(circle at 13% 16%,rgba(255,255,255,.08),transparent 24%),
+    linear-gradient(118deg,#082f45 0%,#0c5562 54%,#14949e 100%);
+  border:1px solid rgba(255,255,255,.08);
+}
+.store-hero-grid{grid-template-columns:1.05fr .95fr;gap:46px}
+.store-hero-grid>div:first-child{padding:10px 4px}
+.store-hero h2{font-size:clamp(34px,4vw,55px);margin:15px 0 10px}
+.store-hero p{font-size:15px;line-height:1.9;max-width:690px}
+
+.store-highlight{
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  border-radius:0 !important;
+  color:#fff !important;
+}
+.store-showcase{
+  display:grid;
+  grid-template-columns:210px 1fr;
+  gap:22px;
+  align-items:center;
+  min-height:330px;
+  position:relative;
+}
+.store-showcase:before{
+  content:"";
+  position:absolute;
+  inset:14px 0 14px 55px;
+  border-radius:26px;
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(10px);
+  box-shadow:0 24px 55px rgba(0,0,0,.14);
+}
+.store-showcase-poster,
+.store-showcase-info{position:relative;z-index:2}
+.store-showcase-poster{
+  width:210px;
+  padding:8px;
+  border-radius:23px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 24px 48px rgba(0,0,0,.22);
+  transform:rotate(-2deg);
+}
+.store-showcase-poster img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:17px;
+  display:block;
+}
+.store-showcase-discount{
+  position:absolute;
+  top:-10px;
+  left:-12px;
+  background:#fff;
+  color:#b43c3c;
+  border-radius:999px;
+  padding:7px 11px;
+  font-size:11px;
+  font-weight:900;
+  box-shadow:0 8px 20px rgba(0,0,0,.14);
+}
+.store-showcase-info{padding:30px 25px 30px 6px}
+.store-showcase-code{
+  direction:ltr;
+  display:inline-flex;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  color:#d8f3f4;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+.store-showcase-info h3{
+  color:#fff !important;
+  margin:0 0 8px !important;
+  font-size:23px !important;
+  line-height:1.55 !important;
+}
+.store-showcase-type{color:#c8e3e6;font-size:12px;margin-bottom:15px}
+.store-showcase-price{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.store-showcase-price strong{color:#fff;font-size:29px;font-weight:900}
+.store-showcase-price del{color:#9dc1c7;font-size:12px}
+.store-showcase-price span{background:rgba(255,235,190,.13);border:1px solid rgba(244,209,132,.35);color:#ffe7ad;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:900}
+.store-showcase-btn{
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:12px;
+  padding:12px 18px;
+  background:#fff;
+  color:var(--navy-dark);
+  font-weight:900;
+  min-width:180px;
+  transition:.22s;
+}
+.store-showcase-btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
+
+@media(max-width:1000px){
+  .store-hero-grid{grid-template-columns:1fr;gap:28px}
+  .store-showcase{max-width:700px;margin:auto}
+}
+@media(max-width:650px){
+  .store-hero{padding:28px 20px}
+  .store-showcase{grid-template-columns:120px 1fr;gap:14px;min-height:245px}
+  .store-showcase:before{inset:8px 0 8px 32px;border-radius:20px}
+  .store-showcase-poster{width:120px;border-radius:18px;padding:6px}
+  .store-showcase-poster img{border-radius:13px}
+  .store-showcase-info{padding:20px 14px 20px 2px}
+  .store-showcase-info h3{font-size:17px !important}
+  .store-showcase-price strong{font-size:22px}
+  .store-showcase-btn{width:100%;min-width:0;padding:10px 12px}
+}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -591,23 +713,23 @@ body.page-home-all main{
 <a href="#store-books">كتب جامعة تبوك</a>
 </div>
 </div>
-<div class="store-highlight">
-<div class="store-highlight-wrap">
-<div class="store-highlight-poster">
+<div class="store-highlight"><div class="store-showcase">
+<div class="store-showcase-poster">
 <img alt="عرض محترف" id="storeHeroImage" src="assets/CBP-AI-offer.png"/>
+<span class="store-showcase-discount" id="storeHeroDiscount">خصم 27%</span>
 </div>
-<div class="store-highlight-content">
-<div class="store-highlight-top">
-<span class="store-highlight-code" id="storeHeroCode">CBP-AI</span>
-<span class="store-highlight-discount" id="storeHeroDiscount">خصم 27%</span>
-</div>
+<div class="store-showcase-info">
+<div class="store-showcase-code" id="storeHeroCode">CBP-AI</div>
 <h3 id="storeHeroTitle">محترف أعمال معتمد في الذكاء الاصطناعي</h3>
-<div class="store-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
-<div class="store-price"><del id="storeHeroOldPrice">3,165 ر.س</del><strong id="storeHeroNewPrice">2,299 ر.س</strong><span class="store-save" id="storeHeroSave">وفر 866 ر.س</span></div>
-<button class="store-buy" id="storeHeroBtn" onclick="chooseStoreProduct('CBP-AI')">التسجيل في العرض</button>
+<div class="store-showcase-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
+<div class="store-showcase-price">
+<strong id="storeHeroNewPrice">2,299 ر.س</strong>
+<del id="storeHeroOldPrice">3,165 ر.س</del>
+<span id="storeHeroSave">وفر 866 ر.س</span>
 </div>
+<button class="store-showcase-btn" id="storeHeroBtn" onclick="chooseStoreProduct('CBP-AI')">التسجيل في العرض</button>
 </div>
-</div>
+</div></div>
 </div>
 </div>
 <div class="section-head" id="store-certificates">
