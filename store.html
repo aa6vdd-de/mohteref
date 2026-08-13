@@ -433,6 +433,158 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
   .store-showcase-btn{width:100%;min-width:0;padding:10px 12px}
 }
 
+
+
+/* ===== إعادة تصميم بطاقة العرض - نسخة أنظف وأفخم ===== */
+.store-showcase{
+  display:grid;
+  grid-template-columns:230px minmax(0,1fr);
+  gap:30px;
+  align-items:center;
+  min-height:330px;
+  position:relative;
+  padding:22px 4px;
+}
+.store-showcase:before{
+  display:none !important;
+}
+.store-showcase-poster{
+  width:230px;
+  padding:0;
+  border-radius:26px;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  transform:none;
+  position:relative;
+}
+.store-showcase-poster:before{
+  content:"";
+  position:absolute;
+  inset:18px -14px -16px 18px;
+  border-radius:26px;
+  background:rgba(118,224,229,.10);
+  border:1px solid rgba(255,255,255,.10);
+  z-index:-1;
+}
+.store-showcase-poster img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:24px;
+  display:block;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 24px 50px rgba(0,0,0,.25);
+}
+.store-showcase-discount{
+  top:-10px;
+  left:-10px;
+  background:#eafaf8;
+  color:#0a6f76;
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 10px 24px rgba(0,0,0,.14);
+  padding:7px 12px;
+  font-size:11px;
+}
+.store-showcase-info{
+  padding:4px 0 4px 28px;
+  border-left:1px solid rgba(255,255,255,.14);
+}
+.store-showcase-code{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.16);
+  color:#bceff0;
+  padding:6px 11px;
+  margin-bottom:12px;
+  letter-spacing:.3px;
+}
+.store-showcase-info h3{
+  color:#fff !important;
+  margin:0 0 9px !important;
+  font-size:25px !important;
+  line-height:1.55 !important;
+  max-width:420px;
+}
+.store-showcase-type{
+  color:#b9dadd;
+  font-size:12px;
+  margin-bottom:18px;
+}
+.store-showcase-price{
+  display:grid;
+  grid-template-columns:auto auto;
+  justify-content:start;
+  align-items:end;
+  gap:2px 12px;
+  margin:0 0 20px;
+}
+.store-showcase-price strong{
+  grid-row:1 / span 2;
+  color:#fff;
+  font-size:34px;
+  line-height:1;
+  font-weight:900;
+}
+.store-showcase-price del{
+  color:#8fb9bf;
+  font-size:12px;
+  align-self:end;
+}
+.store-showcase-price span{
+  background:transparent;
+  border:0;
+  color:#f7d998;
+  border-radius:0;
+  padding:0;
+  font-size:11px;
+  font-weight:900;
+}
+.store-showcase-btn{
+  border:0;
+  border-radius:12px;
+  padding:13px 22px;
+  background:#fff;
+  color:var(--navy-dark);
+  font-weight:900;
+  min-width:190px;
+  box-shadow:0 10px 24px rgba(0,0,0,.13);
+  transition:.22s;
+}
+.store-showcase-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+}
+@media(max-width:1000px){
+  .store-showcase{max-width:700px;margin:auto;grid-template-columns:210px 1fr;gap:24px}
+  .store-showcase-poster{width:210px}
+}
+@media(max-width:650px){
+  .store-showcase{
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:10px 0 0;
+    text-align:center;
+  }
+  .store-showcase-poster{
+    width:min(235px,72vw);
+    margin:auto;
+  }
+  .store-showcase-info{
+    padding:0;
+    border-left:0;
+  }
+  .store-showcase-info h3{
+    font-size:20px !important;
+    max-width:none;
+  }
+  .store-showcase-price{
+    justify-content:center;
+  }
+  .store-showcase-btn{
+    width:100%;
+  }
+}
+
 </style>
 </head>
 <body class="page-store">
