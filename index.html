@@ -699,6 +699,46 @@ body.page-home-all main{
   }
 }
 
+
+
+/* ===== انتقال أنعم بين عروض الواجهة ===== */
+.store-showcase-poster,
+.store-showcase-info{
+  transition:opacity .34s ease,transform .42s cubic-bezier(.22,.8,.25,1),filter .34s ease;
+  will-change:opacity,transform;
+}
+.store-showcase-poster img{
+  transition:transform .55s cubic-bezier(.22,.8,.25,1),opacity .34s ease;
+  will-change:transform,opacity;
+}
+.store-highlight.is-changing .store-showcase-poster{
+  opacity:0;
+  transform:translateX(18px) rotate(-1deg) scale(.975);
+  filter:blur(1px);
+}
+.store-highlight.is-changing .store-showcase-info{
+  opacity:0;
+  transform:translateX(-14px);
+  filter:blur(.5px);
+}
+.store-highlight.is-entering .store-showcase-poster{
+  animation:storePosterIn .55s cubic-bezier(.22,.8,.25,1) both;
+}
+.store-highlight.is-entering .store-showcase-info{
+  animation:storeInfoIn .48s cubic-bezier(.22,.8,.25,1) both;
+}
+@keyframes storePosterIn{
+  from{opacity:0;transform:translateX(22px) rotate(-1deg) scale(.965)}
+  to{opacity:1;transform:translateX(0) rotate(0) scale(1)}
+}
+@keyframes storeInfoIn{
+  from{opacity:0;transform:translateX(-18px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .store-showcase-poster,.store-showcase-info,.store-showcase-poster img{transition:none!important;animation:none!important}
+}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -1302,16 +1342,35 @@ body.page-home-all main{
       storeHeroRefs.save.textContent=offer.save;
       storeHeroRefs.btn.setAttribute('onclick',`chooseStoreProduct('${offer.code}')`);
     }
-    function restartStoreHero(){clearInterval(storeHeroTimer);storeHeroTimer=setInterval(()=>renderStoreHero(storeHeroIndex+1),4200)}
+    // تحميل صور العروض مسبقاً لمنع الوميض أثناء الانتقال
+    storeHeroOffers.forEach(offer=>{const img=new Image();img.src=offer.image;});
+    function restartStoreHero(){clearInterval(storeHeroTimer);storeHeroTimer=setInterval(()=>renderStoreHero(storeHeroIndex+1),5200)}
     if(storeHeroRefs.image){
       const heroBox=storeHeroRefs.image.closest('.store-highlight');
       const baseRender=renderStoreHero;
+      let storeHeroLocked=false;
       renderStoreHero=function(index){
-        if(heroBox) heroBox.classList.add('is-changing');
-        setTimeout(()=>{baseRender(index);if(heroBox) heroBox.classList.remove('is-changing')},180);
+        if(storeHeroLocked) return;
+        storeHeroLocked=true;
+        if(heroBox){heroBox.classList.remove('is-entering');heroBox.classList.add('is-changing');}
+        setTimeout(()=>{
+          baseRender(index);
+          if(heroBox){
+            heroBox.classList.remove('is-changing');
+            void heroBox.offsetWidth;
+            heroBox.classList.add('is-entering');
+            setTimeout(()=>heroBox.classList.remove('is-entering'),620);
+          }
+          storeHeroLocked=false;
+        },330);
       };
       baseRender(0);
       restartStoreHero();
+      const heroShowcase=storeHeroRefs.image.closest('.store-showcase');
+      if(heroShowcase){
+        heroShowcase.addEventListener('mouseenter',()=>clearInterval(storeHeroTimer));
+        heroShowcase.addEventListener('mouseleave',restartStoreHero);
+      }
     }
 
 
