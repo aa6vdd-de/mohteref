@@ -323,6 +323,61 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
  .book-stock-badge{left:16px;bottom:14px}
 }
 
+
+/* ===== صفحة عن محترف ===== */
+.about-page-head{margin-bottom:24px}
+.about-story-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:30px 32px;
+  box-shadow:0 14px 38px rgba(15,55,76,.07);
+}
+.about-story-card p{
+  margin:0;
+  color:#405d6b;
+  font-size:15px;
+  line-height:2.1;
+}
+.about-story-card p + p{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid #edf2f4;
+}
+.about-location-card{
+  margin-top:18px;
+  background:linear-gradient(125deg,var(--navy-dark),#0f5967);
+  color:#fff;
+  border-radius:18px;
+  padding:20px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.about-location-card span{
+  display:block;
+  color:#9edfe2;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:4px;
+}
+.about-location-card strong{font-size:16px}
+.about-map-btn{
+  background:#fff;
+  color:var(--navy);
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+@media(max-width:760px){
+  .about-story-card{padding:22px 18px}
+  .about-story-card p{font-size:14px;line-height:2}
+  .about-location-card{align-items:flex-start;flex-direction:column}
+  .about-map-btn{width:100%;text-align:center}
+}
 </style>
 </head>
 <body class="page-about">
@@ -583,9 +638,28 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 </div>
 </div>
 </section>
-<section class="section" id="why">
-<p>يمكنكم زيارة مركز محترف في <a class="location-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%D8%AC%D8%A7%D9%85%D8%B9%D8%A9+%D8%AA%D8%A8%D9%88%D9%83+%D9%85%D8%A8%D9%86%D9%89+38" rel="noopener noreferrer" target="_blank"><strong>جامعة تبوك – مبنى 38، الدور الثاني 📍</strong></a>.</p>
-</section>
+<section class="section" id="why"><div class="container">
+<div class="section-head about-page-head">
+<div class="section-title">
+<small>عن مركز محترف</small>
+<h2>مركز محترف</h2>
+<p>شريك مهني لتطوير المهارات والاستعداد للشهادات والبرامج المهنية.</p>
+</div>
+</div>
+<div class="about-story-card">
+<p>مركز محترف مركز رائد تأسس عام 2023 ليكون شريكًا حقيقيًا في تسريع المسار المهني للأفراد والمؤسسات. يختص المركز في تقديم أكثر من 25 برنامج شهادة احترافية وشهادة مهنية معتمدة، ترتبط ارتباطًا مباشرًا بمتطلبات سوق العمل المحلي والعالمي، وتُبنى وفق معايير مهنية دقيقة وممارسات تعليمية حديثة.</p>
+<p>وتعتمد منهجيته على تقديم تجارب تعلم يقودها مدربون خبراء من ذوي الممارسة الفعلية، وتدعمها بيانات وتحليلات مستمرة لضمان تحقيق مخرجات قابلة للقياس وجودة أثر مستدامة.</p>
+<p>نؤمن في محترف بقيم المصداقية والشفافية، ونضع المتدرب والأثر المهني في قلب أولوياتنا، مع التزام راسخ بنهج الابتكار والتعلم المستمر لمواكبة تسارع المتغيرات التقنية والمهنية.</p>
+<p>ويعمل مركز محترف بصفته مركزًا معتمدًا يدعم هذه المنظومة، من خلال توفير التدريب المتخصص اللازم للتحضير المهني، واحتضان الاختبارات الرسمية والمعيارية، بما يضمن جاهزية المرشحين وحصولهم على الشهادات المهنية بكفاءة واقتدار.</p>
+</div>
+<div class="about-location-card">
+<div>
+<span>موقع المركز</span>
+<strong>جامعة تبوك – مبنى 38، الدور الثاني</strong>
+</div>
+<a class="about-map-btn" href="https://www.google.com/maps/search/?api=1&amp;query=%D8%AC%D8%A7%D9%85%D8%B9%D8%A9+%D8%AA%D8%A8%D9%88%D9%83+%D9%85%D8%A8%D9%86%D9%89+38" rel="noopener noreferrer" target="_blank">فتح الموقع على الخريطة ↗</a>
+</div>
+</div></section>
 <section class="partners">
 <div class="container">
 <div class="section-title"><small>اعتمادات مهنية</small><h2>الجهات المانحة للشهادات</h2><p>تظهر الجهة المانحة وتفاصيل البرنامج داخل بطاقة كل شهادة.</p></div>
