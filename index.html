@@ -1064,6 +1064,9 @@ body.page-home-all main{
   .program-poster .poster-title{font-size:21px}
   .program-body h3{font-size:18px}
 }
+
+/* Remove bottom HRDF support strip from program cards */
+.program-card .hrdf-support{display:none !important;}
 </style>
 </head>
 <body class="page-home-all">
@@ -1439,12 +1442,7 @@ body.page-home-all main{
       'PMP':4100,'CBP-HR':3165,'IC3':3000,'CBP-CT':3165,'MOS':3450,'SEC+':11525,'NETWORK+':12393,'A+':10185,'CYSA+':13700
     };
     function formatSar(n){return Number(n).toLocaleString('en-US')+' ر.س'}
-    function hrdfBlock(code){
-      const amount=hrdfSupport[code];
-      if(!amount) return '';
-      return `<div class="hrdf-support">
-        <span class="hrdf-label">مدعومة من هدف</span>
-        <span class="hrdf-amount">${formatSar(amount)}</span>
+    function hrdfBlock(code){ return ''; }</span>
       </div>`;
     }
 
