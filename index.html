@@ -808,37 +808,39 @@ body.page-home-all main{
 
 
 
-/* ===== HRDF / هدف support ===== */
+
+
+
+/* ===== HRDF / هدف support - simplified + cleaner ===== */
 .hrdf-support{
-  margin:12px 0 14px;
-  border:1px solid #cfe8dc;
-  background:#f1fbf6;
-  border-radius:12px;
-  padding:10px 12px;
+  margin:14px 0 16px;
+  border:1px solid #bfe3d2;
+  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
+  border-radius:14px;
+  padding:14px 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  flex-wrap:wrap;
+  color:#16744e;
+  box-shadow:0 6px 18px rgba(19,118,76,.06);
 }
 .hrdf-support .hrdf-label{
   color:#16744e;
-  font-size:12px;
+  font-size:15px;
   font-weight:900;
   display:inline-flex;
   align-items:center;
-  gap:6px;
+  gap:8px;
 }
-.hrdf-support .hrdf-amount{
-  color:#0b5f42;
-  font-size:14px;
+.hrdf-support .hrdf-label::before{
+  content:'✓';
   font-weight:900;
 }
-.hrdf-support small{
-  width:100%;
-  color:#5e756a;
-  font-size:10.5px;
-  line-height:1.6;
+.hrdf-support .hrdf-amount{
+  color:#0f7656;
+  font-size:18px;
+  font-weight:900;
 }
 .hrdf-modal-badge{
   background:#edf9f3 !important;
@@ -847,15 +849,17 @@ body.page-home-all main{
   font-weight:900;
 }
 .store-hrdf{
-  margin:0 0 13px;
-  background:#f1fbf6;
-  border:1px solid #cfe8dc;
+  margin:14px 0 18px;
+  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
+  border:1px solid #bfe3d2;
   color:#146e4b;
-  padding:9px 11px;
-  border-radius:10px;
-  font-size:11px;
+  padding:12px 16px;
+  border-radius:14px;
+  font-size:15px;
   line-height:1.6;
-  font-weight:800;
+  font-weight:900;
+  text-align:center;
+  box-shadow:0 6px 18px rgba(19,118,76,.06);
 }
 .hrdf-disclaimer{
   margin:0 0 20px;
@@ -867,7 +871,9 @@ body.page-home-all main{
   font-size:11px;
   line-height:1.7;
 }
-
+/* mimic store style a bit more on program cards */
+.program-card .hrdf-support{border-radius:16px}
+.program-card .program-body{display:flex;flex-direction:column}
 </style>
 </head>
 <body class="page-home-all">
@@ -1246,7 +1252,10 @@ body.page-home-all main{
     function hrdfBlock(code){
       const amount=hrdfSupport[code];
       if(!amount) return '';
-      return `<div class="hrdf-support"><span class="hrdf-label">✓ مدعومة من هدف</span><span class="hrdf-amount">حتى ${formatSar(amount)}</span><small>الحد الأعلى للتعويض عن تكاليف الحصول على الشهادة وفق شروط وأهلية برنامج هدف.</small></div>`;
+      return `<div class="hrdf-support">
+        <span class="hrdf-label">مدعومة من هدف</span>
+        <span class="hrdf-amount">${formatSar(amount)}</span>
+      </div>`;
     }
 
     const certificates = [
@@ -1415,7 +1424,7 @@ body.page-home-all main{
     function filterByField(name){fieldFilter.value=name;collegeFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
 
     const backdrop=document.getElementById('modalBackdrop');
-    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">هدف: حتى ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
+    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">مدعومة من هدف: ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
     function closeModal(){backdrop.classList.remove('show');document.body.style.overflow=''}
     document.getElementById('closeModal').onclick=closeModal;document.getElementById('closeModalBottom').onclick=closeModal;backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
     function openWhatsAppChannel(){window.open('https://whatsapp.com/channel/0029VayvV5C3wtbC1jI9od2v','_blank','noopener,noreferrer')}
