@@ -868,6 +868,42 @@ body.page-home-all main{
   line-height:1.7;
 }
 
+
+/* ===== السعر + مستردة من هدف | الصفحة الرئيسية فقط ===== */
+.home-price-row{
+  margin:14px 0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 14px;
+  border-radius:14px;
+  background:#f6fbfa;
+  border:1px solid #d8e9e4;
+}
+.home-price-row .home-price{
+  color:var(--primary-dark);
+  font-size:22px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.home-price-row .home-refund-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 11px;
+  border-radius:999px;
+  background:#e8f7f0;
+  color:#14704d;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.home-price-row .home-refund-badge::before{content:'✓';font-weight:900}
+@media(max-width:560px){
+  .home-price-row{align-items:flex-start;flex-direction:column}
+  .home-price-row .home-price{font-size:20px}
+}
 </style>
 </head>
 <body class="page-home-all">
@@ -1243,10 +1279,13 @@ body.page-home-all main{
       'PMP':4100,'CBP-HR':3165,'IC3':3000,'CBP-CT':3165,'MOS':3450,'SEC+':11525,'NETWORK+':12393,'A+':10185,'CYSA+':13700
     };
     function formatSar(n){return Number(n).toLocaleString('en-US')+' ر.س'}
-    function hrdfBlock(code){ return ''; }
+    function hrdfBlock(code){
+      const amount=hrdfSupport[code];
+      if(!amount) return '';
+      return `<div class="home-price-row"><span class="home-price">${formatSar(amount)}</span><span class="home-refund-badge">مستردة من هدف</span></div>`;
+    }
 
-
-    const certificates = [
+const certificates = [
       {
         code: 'CBP-M', title: 'محترف أعمال معتمد في التسويق', field: 'التسويق والمبيعات', icon: '📣', issuer: 'IBTA', hours: 20,
         summary: 'تطوير مهارات تحليل السوق وسلوك المستهلك وبناء الخطط التسويقية وإدارة العلامة التجارية.',
@@ -1398,7 +1437,7 @@ body.page-home-all main{
     function normalizeText(t){return(t||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim()}
     function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
-      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div><div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
+      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
