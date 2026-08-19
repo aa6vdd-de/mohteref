@@ -904,6 +904,43 @@ body.page-home-all main{
   .home-price-row{align-items:flex-start;flex-direction:column}
   .home-price-row .home-price{font-size:20px}
 }
+
+/* === HRDF support on HOME cards: visible block === */
+.program-card .home-hrdf-info{
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin:18px 0 14px;
+  padding:15px 18px;
+  border:1px solid #b8e2d0;
+  background:#f1fbf6;
+  border-radius:16px;
+  color:#0d7a5a;
+  font-weight:900;
+}
+.program-card .home-hrdf-info .home-hrdf-label{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:15px;
+  white-space:nowrap;
+}
+.program-card .home-hrdf-info .home-hrdf-price{
+  font-size:18px;
+  font-weight:900;
+  color:#0b6f54;
+  white-space:nowrap;
+}
+@media (max-width:700px){
+  .program-card .home-hrdf-info{
+    padding:13px 14px;
+    gap:10px;
+  }
+  .program-card .home-hrdf-info .home-hrdf-label{font-size:14px}
+  .program-card .home-hrdf-info .home-hrdf-price{font-size:16px}
+}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -1435,9 +1472,19 @@ const certificates = [
     document.getElementById('statFields').textContent=unique(certificates.map(c=>c.field)).length+'+';
 
     function normalizeText(t){return(t||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim()}
-    function cardTemplate(c,index){
+    
+function homeHrdfInfo(code){
+  const amount = hrdfSupport && hrdfSupport[code];
+  if(!amount) return '';
+  return `<div class="home-hrdf-info">
+    <span class="home-hrdf-label">✓ مستردة من هدف</span>
+    <span class="home-hrdf-price">${formatSar(amount)}</span>
+  </div>`;
+}
+
+function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
-      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
+      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}${homeHrdfInfo(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
