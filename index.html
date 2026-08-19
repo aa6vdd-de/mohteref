@@ -1484,7 +1484,7 @@ function homeHrdfInfo(code){
 
 function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
-      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}${homeHrdfInfo(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
+      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
