@@ -694,39 +694,37 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 
 
 
-
-
-
-/* ===== HRDF / هدف support - simplified + cleaner ===== */
+/* ===== HRDF / هدف support ===== */
 .hrdf-support{
-  margin:14px 0 16px;
-  border:1px solid #bfe3d2;
-  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
-  border-radius:14px;
-  padding:14px 16px;
+  margin:12px 0 14px;
+  border:1px solid #cfe8dc;
+  background:#f1fbf6;
+  border-radius:12px;
+  padding:10px 12px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  color:#16744e;
-  box-shadow:0 6px 18px rgba(19,118,76,.06);
+  flex-wrap:wrap;
 }
 .hrdf-support .hrdf-label{
   color:#16744e;
-  font-size:15px;
+  font-size:12px;
   font-weight:900;
   display:inline-flex;
   align-items:center;
-  gap:8px;
-}
-.hrdf-support .hrdf-label::before{
-  content:'✓';
-  font-weight:900;
+  gap:6px;
 }
 .hrdf-support .hrdf-amount{
-  color:#0f7656;
-  font-size:18px;
+  color:#0b5f42;
+  font-size:14px;
   font-weight:900;
+}
+.hrdf-support small{
+  width:100%;
+  color:#5e756a;
+  font-size:10.5px;
+  line-height:1.6;
 }
 .hrdf-modal-badge{
   background:#edf9f3 !important;
@@ -735,17 +733,15 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
   font-weight:900;
 }
 .store-hrdf{
-  margin:14px 0 18px;
-  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
-  border:1px solid #bfe3d2;
+  margin:0 0 13px;
+  background:#f1fbf6;
+  border:1px solid #cfe8dc;
   color:#146e4b;
-  padding:12px 16px;
-  border-radius:14px;
-  font-size:15px;
+  padding:9px 11px;
+  border-radius:10px;
+  font-size:11px;
   line-height:1.6;
-  font-weight:900;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(19,118,76,.06);
+  font-weight:800;
 }
 .hrdf-disclaimer{
   margin:0 0 20px;
@@ -757,9 +753,7 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
   font-size:11px;
   line-height:1.7;
 }
-/* mimic store style a bit more on program cards */
-.program-card .hrdf-support{border-radius:16px}
-.program-card .program-body{display:flex;flex-direction:column}
+
 </style>
 </head>
 <body class="page-store">

@@ -808,39 +808,37 @@ body.page-home-all main{
 
 
 
-
-
-
-/* ===== HRDF / هدف support - simplified + cleaner ===== */
+/* ===== HRDF / هدف support ===== */
 .hrdf-support{
-  margin:14px 0 16px;
-  border:1px solid #bfe3d2;
-  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
-  border-radius:14px;
-  padding:14px 16px;
+  margin:12px 0 14px;
+  border:1px solid #cfe8dc;
+  background:#f1fbf6;
+  border-radius:12px;
+  padding:10px 12px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  color:#16744e;
-  box-shadow:0 6px 18px rgba(19,118,76,.06);
+  flex-wrap:wrap;
 }
 .hrdf-support .hrdf-label{
   color:#16744e;
-  font-size:15px;
+  font-size:12px;
   font-weight:900;
   display:inline-flex;
   align-items:center;
-  gap:8px;
-}
-.hrdf-support .hrdf-label::before{
-  content:'✓';
-  font-weight:900;
+  gap:6px;
 }
 .hrdf-support .hrdf-amount{
-  color:#0f7656;
-  font-size:18px;
+  color:#0b5f42;
+  font-size:14px;
   font-weight:900;
+}
+.hrdf-support small{
+  width:100%;
+  color:#5e756a;
+  font-size:10.5px;
+  line-height:1.6;
 }
 .hrdf-modal-badge{
   background:#edf9f3 !important;
@@ -849,17 +847,15 @@ body.page-home-all main{
   font-weight:900;
 }
 .store-hrdf{
-  margin:14px 0 18px;
-  background:linear-gradient(180deg,#f6fcf9 0%, #edf8f2 100%);
-  border:1px solid #bfe3d2;
+  margin:0 0 13px;
+  background:#f1fbf6;
+  border:1px solid #cfe8dc;
   color:#146e4b;
-  padding:12px 16px;
-  border-radius:14px;
-  font-size:15px;
+  padding:9px 11px;
+  border-radius:10px;
+  font-size:11px;
   line-height:1.6;
-  font-weight:900;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(19,118,76,.06);
+  font-weight:800;
 }
 .hrdf-disclaimer{
   margin:0 0 20px;
@@ -871,202 +867,7 @@ body.page-home-all main{
   font-size:11px;
   line-height:1.7;
 }
-/* mimic store style a bit more on program cards */
-.program-card .hrdf-support{border-radius:16px}
-.program-card .program-body{display:flex;flex-direction:column}
 
-
-/* ===== Program cards redesign (closer to store cards) ===== */
-.program-grid{
-  align-items:stretch;
-}
-.program-card{
-  border-radius:28px !important;
-  overflow:hidden;
-  background:#fff;
-  border:1px solid #dfe8ec;
-  box-shadow:0 18px 38px rgba(8,32,48,.08);
-  display:flex;
-  flex-direction:column;
-}
-.program-poster{
-  position:relative;
-  min-height:320px;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(255,255,255,.2) 0 2px, transparent 2px) 0 0/10px 10px,
-    linear-gradient(120deg, rgba(255,255,255,.14), rgba(255,255,255,.04)),
-    linear-gradient(135deg, #87c7be 0%, #356f9d 100%);
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:30px;
-}
-.program-poster::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.12));
-}
-.program-poster .discount-pill{
-  position:absolute;
-  top:16px;
-  right:16px;
-  z-index:1;
-  background:#1ef2cc;
-  color:#0f6050;
-  padding:8px 14px;
-  border-radius:999px;
-  font-size:14px;
-  font-weight:900;
-}
-.program-poster .poster-logo{
-  position:absolute;
-  top:26px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:1;
-  color:#fff;
-  text-align:center;
-  line-height:1.2;
-  font-weight:800;
-  opacity:.95;
-  font-size:14px;
-}
-.program-poster .poster-logo small{
-  display:block;
-  font-size:12px;
-  letter-spacing:2px;
-  margin-top:2px;
-  opacity:.9;
-}
-.program-poster .poster-content{
-  position:relative;
-  z-index:1;
-  color:#fff;
-}
-.program-poster .poster-title{
-  font-size:24px;
-  line-height:1.5;
-  font-weight:900;
-  margin-bottom:18px;
-}
-.program-poster .poster-code{
-  font-size:76px;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:18px;
-}
-.program-poster .poster-hrdf{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:42px;
-  padding:0 18px;
-  border-radius:999px;
-  background:#1ef2cc;
-  color:#0f6050;
-  font-weight:900;
-  font-size:18px;
-}
-.program-body{
-  padding:26px 22px 22px !important;
-}
-.program-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-  margin-bottom:12px;
-}
-.program-mini{
-  width:58px;
-  height:58px;
-  border-radius:16px;
-  background:linear-gradient(135deg,#87c7be 0%, #356f9d 100%);
-  color:#fff;
-  font-size:12px;
-  font-weight:900;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  line-height:1.2;
-  box-shadow:0 10px 24px rgba(53,111,157,.22);
-  flex:0 0 auto;
-}
-.program-id{display:flex;flex-direction:column;gap:8px}
-.program-id .program-code-text{
-  font-size:15px;
-  font-weight:900;
-  color:#173e5c;
-}
-.program-tags{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.program-tag{
-  background:#f1f6f7;
-  color:#6d8090;
-  border-radius:12px;
-  padding:7px 12px;
-  font-size:12px;
-  font-weight:800;
-}
-.program-body h3{
-  font-size:22px;
-  line-height:1.8;
-  margin:0 0 10px;
-}
-.program-summary{
-  font-size:14px;
-  line-height:1.9;
-  min-height:auto !important;
-  margin-bottom:16px !important;
-}
-.program-price{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:10px 0 16px;
-}
-.program-price .new-price{
-  color:#0f8b95;
-  font-size:26px;
-  font-weight:900;
-}
-.program-price .old-price{
-  color:#9aa7b4;
-  font-size:15px;
-  text-decoration:line-through;
-}
-.program-card .program-meta{
-  display:none !important;
-}
-.program-card .hrdf-support{
-  border-radius:16px;
-  padding:14px 18px;
-  margin:4px 0 18px;
-}
-.program-card .major-chips span{
-  border-radius:12px;
-  padding:9px 12px;
-}
-.program-card .program-actions{
-  margin-top:auto;
-}
-@media (max-width: 700px){
-  .program-poster{min-height:280px;padding:24px}
-  .program-poster .poster-code{font-size:58px}
-  .program-poster .poster-title{font-size:21px}
-  .program-body h3{font-size:18px}
-}
-
-/* Remove bottom HRDF support strip from program cards */
-.program-card .hrdf-support{display:none !important;}
 </style>
 </head>
 <body class="page-home-all">
@@ -1442,9 +1243,8 @@ body.page-home-all main{
       'PMP':4100,'CBP-HR':3165,'IC3':3000,'CBP-CT':3165,'MOS':3450,'SEC+':11525,'NETWORK+':12393,'A+':10185,'CYSA+':13700
     };
     function formatSar(n){return Number(n).toLocaleString('en-US')+' ر.س'}
-    function hrdfBlock(code){ return ''; }</span>
-      </div>`;
-    }
+    function hrdfBlock(code){ return ''; }
+
 
     const certificates = [
       {
@@ -1598,7 +1398,7 @@ body.page-home-all main{
     function normalizeText(t){return(t||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim()}
     function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
-      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
+      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div><div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
@@ -1612,7 +1412,7 @@ body.page-home-all main{
     function filterByField(name){fieldFilter.value=name;collegeFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
 
     const backdrop=document.getElementById('modalBackdrop');
-    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">مدعومة من هدف: ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
+    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">هدف: حتى ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
     function closeModal(){backdrop.classList.remove('show');document.body.style.overflow=''}
     document.getElementById('closeModal').onclick=closeModal;document.getElementById('closeModalBottom').onclick=closeModal;backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
     function openWhatsAppChannel(){window.open('https://whatsapp.com/channel/0029VayvV5C3wtbC1jI9od2v','_blank','noopener,noreferrer')}
