@@ -1237,6 +1237,18 @@ body.page-home-all main{
 </div>
 </div>
 <script>
+
+    const hrdfSupport = {
+      'CBP-M':3165,'CBP-LS':1840,'CBP-S':1840,'CBP-CS':1840,'CBP-PM':3165,'CBP-LTS':1840,'CBP-CM':1840,
+      'PMP':4100,'CBP-HR':3165,'IC3':3000,'CBP-CT':3165,'MOS':3450,'SEC+':11525,'NETWORK+':12393,'A+':10185,'CYSA+':13700
+    };
+    function formatSar(n){return Number(n).toLocaleString('en-US')+' ر.س'}
+    function hrdfBlock(code){
+      const amount=hrdfSupport[code];
+      if(!amount) return '';
+      return `<div class="hrdf-support"><span class="hrdf-label">✓ مدعومة من هدف</span><span class="hrdf-amount">حتى ${formatSar(amount)}</span><small>الحد الأعلى للتعويض عن تكاليف الحصول على الشهادة وفق شروط وأهلية برنامج هدف.</small></div>`;
+    }
+
     const certificates = [
       {
         code: 'CBP-M', title: 'محترف أعمال معتمد في التسويق', field: 'التسويق والمبيعات', icon: '📣', issuer: 'IBTA', hours: 20,
@@ -1389,7 +1401,7 @@ body.page-home-all main{
     function normalizeText(t){return(t||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim()}
     function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
-      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div><div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
+      return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
@@ -1403,7 +1415,7 @@ body.page-home-all main{
     function filterByField(name){fieldFilter.value=name;collegeFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
 
     const backdrop=document.getElementById('modalBackdrop');
-    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
+    function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">هدف: حتى ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
     function closeModal(){backdrop.classList.remove('show');document.body.style.overflow=''}
     document.getElementById('closeModal').onclick=closeModal;document.getElementById('closeModalBottom').onclick=closeModal;backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
     function openWhatsAppChannel(){window.open('https://whatsapp.com/channel/0029VayvV5C3wtbC1jI9od2v','_blank','noopener,noreferrer')}
