@@ -941,6 +941,27 @@ body.page-home-all main{
   .program-card .home-hrdf-info .home-hrdf-price{font-size:16px}
 }
 
+
+/* Search button for certificates catalog */
+.search-submit{
+  min-height:52px;
+  padding:0 32px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+  color:#fff;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 10px 22px rgba(15,142,155,.18);
+  transition:.2s ease;
+}
+.search-submit:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(15,142,155,.24)}
+@media(max-width:700px){
+  .search-submit,.filters .reset{width:100%}
+}
+
 </style>
 </head>
 <body class="page-home-all">
@@ -1106,19 +1127,19 @@ body.page-home-all main{
 <section class="section soft" id="catalog">
 <div class="container">
 <div class="section-head">
-<div class="section-title"><small>الدليل الكامل</small><h2>جميع الشهادات الاحترافية</h2><p>ابحث بالاسم أو التخصص، ثم صفِّ النتائج حسب الكلية أو المجال المهني.</p></div>
+<div class="section-title"><small>الدليل الكامل</small><h2>جميع الشهادات الاحترافية</h2><p>اختر الكلية والتخصص المناسب، ثم اضغط على زر البحث لعرض الشهادات المقترحة.</p></div>
 </div>
 <div class="catalog-panel">
 <div class="selection-banner" id="selectionBanner"><span id="selectionText"></span><a href="index.html">تغيير الكلية أو التخصص</a></div>
 <div class="filters">
-<div class="field"><label for="searchInput">البحث</label><input id="searchInput" placeholder="مثال: التسويق، علوم الحاسب، إدارة المشاريع..." type="search"/></div>
-<div class="field"><label for="collegeFilter">الكلية</label><select id="collegeFilter"><option value="all">جميع الكليات</option></select></div>
-<div class="field"><label for="fieldFilter">المجال المهني</label><select id="fieldFilter"><option value="all">جميع المجالات</option></select></div>
-<button class="reset" id="resetBtn">إعادة الضبط</button>
+<div class="field"><label for="collegeFilter">الكلية</label><select id="collegeFilter"><option value="all">اختر الكلية</option></select></div>
+<div class="field"><label for="majorFilter">التخصص</label><select id="majorFilter"><option value="all">اختر التخصص</option></select></div>
+<button class="search-submit" id="searchBtn" type="button">بحث</button>
+<button class="reset" id="resetBtn" type="button">إعادة الضبط</button>
 </div>
-<div class="catalog-count" id="resultCount">اكتب في البحث لعرض الشهادات</div>
+<div class="catalog-count" id="resultCount">اختر الكلية أو التخصص ثم اضغط بحث</div>
 <div class="program-grid" id="programGrid"></div>
-<div class="empty" id="emptyState" style="display:block"><b>ابحث عن الشهادة التي تناسبك</b><br/>اكتب اسم الشهادة أو التخصص أو المجال المهني في خانة البحث لعرض النتائج.</div>
+<div class="empty" id="emptyState" style="display:block"><b>اعثر على الشهادة الأنسب لك</b><br/>اختر الكلية أو التخصص، ثم اضغط على زر «بحث» لعرض النتائج.</div>
 </div>
 </div>
 </section>
@@ -1460,14 +1481,14 @@ const certificates = [
 
     const programGrid=document.getElementById('programGrid');
     const featuredGrid=document.getElementById('featuredGrid');
-    const searchInput=document.getElementById('searchInput');
     const collegeFilter=document.getElementById('collegeFilter');
-    const fieldFilter=document.getElementById('fieldFilter');
+    const majorFilter=document.getElementById('majorFilter');
+    const searchBtn=document.getElementById('searchBtn');
     const resultCount=document.getElementById('resultCount');
     const emptyState=document.getElementById('emptyState');
     const unique=arr=>[...new Set(arr)].sort((a,b)=>a.localeCompare(b,'ar'));
     unique(certificates.flatMap(c=>c.colleges).filter(c=>c!=='جميع الكليات')).forEach(v=>collegeFilter.insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`));
-    unique(certificates.map(c=>c.field)).forEach(v=>fieldFilter.insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`));
+    unique(certificates.flatMap(c=>c.majors)).forEach(v=>majorFilter.insertAdjacentHTML('beforeend',`<option value="${v}">${v}</option>`));
     document.getElementById('statPrograms').textContent=certificates.length;
     document.getElementById('statFields').textContent=unique(certificates.map(c=>c.field)).length+'+';
 
@@ -1487,39 +1508,86 @@ function cardTemplate(c,index){
       return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div>${hrdfBlock(c.code)}<div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}${c.majors.length>3?'<span>+ المزيد</span>':''}</div><div class="card-buttons"><button class="details" onclick="openModal(${index})">عرض التفاصيل</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`
     }
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
+    let catalogSearchActivated=false;
+
     function getFiltered(){
-      const q=normalizeText(searchInput.value),college=collegeFilter.value,field=fieldFilter.value;
-      if(!q) return [];
+      const college=collegeFilter.value;
+      const major=majorFilter.value;
       return certificates.filter(c=>{
-        const hay=normalizeText([c.code,c.title,c.field,c.summary,...c.colleges,...c.majors,...c.skills].join(' '));
-        return hay.includes(q)
-          && (college==='all'||c.colleges.includes(college)||c.colleges.includes('جميع الكليات'))
-          && (field==='all'||c.field===field);
+        const collegeMatch=(college==='all'||c.colleges.includes(college)||c.colleges.includes('جميع الكليات'));
+        const majorMatch=(major==='all'||c.majors.includes(major));
+        return collegeMatch && majorMatch;
       });
     }
+
     function render(){
-      const q=normalizeText(searchInput.value);
-      if(!q){
+      if(!catalogSearchActivated){
         programGrid.innerHTML='';
-        resultCount.textContent='اكتب في البحث لعرض الشهادات';
-        emptyState.innerHTML='<b>ابحث عن الشهادة التي تناسبك</b><br/>اكتب اسم الشهادة أو التخصص أو المجال المهني في خانة البحث لعرض النتائج.';
+        resultCount.textContent='اختر الكلية أو التخصص ثم اضغط بحث';
+        emptyState.innerHTML='<b>اعثر على الشهادة الأنسب لك</b><br/>اختر الكلية أو التخصص، ثم اضغط على زر «بحث» لعرض النتائج.';
         emptyState.style.display='block';
         return;
       }
+
+      const college=collegeFilter.value;
+      const major=majorFilter.value;
+      if(college==='all' && major==='all'){
+        programGrid.innerHTML='';
+        resultCount.textContent='حدد الكلية أو التخصص أولًا';
+        emptyState.innerHTML='<b>حدد معيار البحث</b><br/>اختر كلية أو تخصصًا واحدًا على الأقل، ثم اضغط «بحث».';
+        emptyState.style.display='block';
+        return;
+      }
+
       const rows=getFiltered();
       programGrid.innerHTML=rows.map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
       resultCount.textContent=`${rows.length} شهادة متاحة`;
+
       if(rows.length){
         emptyState.style.display='none';
       }else{
-        emptyState.innerHTML='<b>لم نجد شهادة مطابقة</b><br/>جرّب كلمة بحث أخرى أو غيّر الكلية أو المجال المهني.';
+        emptyState.innerHTML='<b>لم نجد شهادة مطابقة</b><br/>جرّب اختيار كلية أو تخصص آخر.';
         emptyState.style.display='block';
       }
     }
-    searchInput.addEventListener('input',render);collegeFilter.addEventListener('change',render);fieldFilter.addEventListener('change',render);
-    document.getElementById('resetBtn').addEventListener('click',()=>{searchInput.value='';collegeFilter.value='all';fieldFilter.value='all';render()});
-    function filterByCollege(name){collegeFilter.value=name;fieldFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
-    function filterByField(name){fieldFilter.value=name;collegeFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
+
+    searchBtn.addEventListener('click',()=>{
+      catalogSearchActivated=true;
+      render();
+    });
+
+    collegeFilter.addEventListener('change',()=>{
+      catalogSearchActivated=false;
+      render();
+    });
+
+    majorFilter.addEventListener('change',()=>{
+      catalogSearchActivated=false;
+      render();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click',()=>{
+      collegeFilter.value='all';
+      majorFilter.value='all';
+      catalogSearchActivated=false;
+      render();
+    });
+
+    function filterByCollege(name){
+      collegeFilter.value=name;
+      majorFilter.value='all';
+      catalogSearchActivated=true;
+      render();
+      document.getElementById('catalog').scrollIntoView();
+    }
+
+    function filterByField(name){
+      collegeFilter.value='all';
+      majorFilter.value='all';
+      catalogSearchActivated=false;
+      render();
+      document.getElementById('catalog').scrollIntoView();
+    }
 
     const backdrop=document.getElementById('modalBackdrop');
     function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">هدف: حتى ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
@@ -1537,27 +1605,27 @@ function cardTemplate(c,index){
       const params=new URLSearchParams(window.location.search);
       const college=params.get('college');
       const major=params.get('major');
-      const field=params.get('field');
       let applied=[];
+
       if(college && [...collegeFilter.options].some(o=>o.value===college)){
         collegeFilter.value=college;
         applied.push(`الكلية: <b>${college}</b>`);
       }
-      if(field && [...fieldFilter.options].some(o=>o.value===field)){
-        fieldFilter.value=field;
-        applied.push(`المجال: <b>${field}</b>`);
-      }
-      if(major){
-        searchInput.value=major;
+      if(major && [...majorFilter.options].some(o=>o.value===major)){
+        majorFilter.value=major;
         applied.push(`التخصص: <b>${major}</b>`);
       }
+
       if(applied.length){
         const banner=document.getElementById('selectionBanner');
-        document.getElementById('selectionText').innerHTML=`تم عرض الشهادات المقترحة بناءً على ${applied.join(' — ')}`;
+        document.getElementById('selectionText').innerHTML=`تم تحديد البحث بناءً على ${applied.join(' — ')}`;
         banner.classList.add('show');
+        catalogSearchActivated=true;
       }
       render();
-      if(applied.length){setTimeout(()=>document.getElementById('catalog').scrollIntoView({behavior:'smooth',block:'start'}),180)}
+      if(applied.length){
+        setTimeout(()=>document.getElementById('catalog').scrollIntoView({behavior:'smooth',block:'start'}),180);
+      }
     }
     applyIncomingFilters();
 
