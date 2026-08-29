@@ -505,6 +505,29 @@ body.page-partners main{min-height:60vh}
   }
 }
 
+
+@media(max-width:760px){
+  .site-header{position:relative !important; z-index:2147483000 !important;}
+  .header-inner{position:relative; z-index:2147483001;}
+  .menu-btn{
+    display:block !important;
+    position:relative !important;
+    z-index:2147483003 !important;
+    pointer-events:auto !important;
+    touch-action:manipulation !important;
+    -webkit-tap-highlight-color:rgba(15,142,155,.12);
+  }
+  .mobile-open .nav-links{
+    display:grid !important;
+    z-index:2147483002 !important;
+    pointer-events:auto !important;
+  }
+  .mobile-open .nav-links a{
+    pointer-events:auto !important;
+    touch-action:manipulation !important;
+  }
+}
+
 </style>
 </head>
 <body class="page-partners">
@@ -517,7 +540,7 @@ body.page-partners main{min-height:60vh}
 <nav aria-label="التنقل الرئيسي" class="nav-links"><a href="index.html#catalog">الشهادات الاحترافية والبرامج المهنية</a><a href="about.html">عن محترف</a><a href="store.html">المتجر والعروض</a><a href="books.html">الكتب الجامعية</a><a aria-current="page" href="partners.html" style="color:var(--primary-dark);background:var(--soft);font-weight:900">شركاؤنا</a></nav>
 <div class="header-actions">
 <button class="outline-btn" onclick="openWhatsAppChannel()">التسجيل</button>
-<button aria-label="فتح القائمة" class="menu-btn" id="menuBtn">☰</button>
+<button aria-label="فتح القائمة" class="menu-btn" id="menuBtn" onclick="document.getElementById('siteHeader').classList.toggle('mobile-open'); return false;" onclick="document.getElementById(\'siteHeader\').classList.toggle(\'mobile-open\'); return false;">☰</button>
 </div>
 </div>
 </header>
@@ -748,13 +771,7 @@ body.page-partners main{min-height:60vh}
     function showSlide(i){slideIndex=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===slideIndex));dots.forEach((d,n)=>d.classList.toggle('active',n===slideIndex))}
     function autoSlide(){clearInterval(slideTimer);slideTimer=setInterval(()=>showSlide(slideIndex+1),6500)}
     dots.forEach((d,i)=>d.addEventListener('click',()=>{showSlide(i);autoSlide()}));autoSlide();
-    {
-          const menuBtn=document.getElementById('menuBtn');
-          const siteHeader=document.getElementById('siteHeader');
-          if(menuBtn && siteHeader){
-            menuBtn.addEventListener('click',()=>siteHeader.classList.toggle('mobile-open'));
-          }
-        }
+    
     document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
           const siteHeader=document.getElementById('siteHeader');
           if(siteHeader) siteHeader.classList.remove('mobile-open');
