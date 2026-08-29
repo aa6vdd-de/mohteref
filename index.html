@@ -1116,9 +1116,9 @@ body.page-home-all main{
 <div class="field"><label for="fieldFilter">المجال المهني</label><select id="fieldFilter"><option value="all">جميع المجالات</option></select></div>
 <button class="reset" id="resetBtn">إعادة الضبط</button>
 </div>
-<div class="catalog-count" id="resultCount">19 شهادة متاحة</div>
+<div class="catalog-count" id="resultCount">اكتب في البحث لعرض الشهادات</div>
 <div class="program-grid" id="programGrid"></div>
-<div class="empty" id="emptyState"><b>لم نجد شهادة مطابقة</b><br/>جرّب تغيير كلمة البحث أو اختيار كلية أخرى.</div>
+<div class="empty" id="emptyState" style="display:block"><b>ابحث عن الشهادة التي تناسبك</b><br/>اكتب اسم الشهادة أو التخصص أو المجال المهني في خانة البحث لعرض النتائج.</div>
 </div>
 </div>
 </section>
@@ -1489,9 +1489,33 @@ function cardTemplate(c,index){
     featuredGrid.innerHTML=certificates.slice(0,6).map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
     function getFiltered(){
       const q=normalizeText(searchInput.value),college=collegeFilter.value,field=fieldFilter.value;
-      return certificates.filter(c=>{const hay=normalizeText([c.code,c.title,c.field,c.summary,...c.colleges,...c.majors,...c.skills].join(' '));return(!q||hay.includes(q))&&(college==='all'||c.colleges.includes(college)||c.colleges.includes('جميع الكليات'))&&(field==='all'||c.field===field)})
+      if(!q) return [];
+      return certificates.filter(c=>{
+        const hay=normalizeText([c.code,c.title,c.field,c.summary,...c.colleges,...c.majors,...c.skills].join(' '));
+        return hay.includes(q)
+          && (college==='all'||c.colleges.includes(college)||c.colleges.includes('جميع الكليات'))
+          && (field==='all'||c.field===field);
+      });
     }
-    function render(){const rows=getFiltered();programGrid.innerHTML=rows.map(c=>cardTemplate(c,certificates.indexOf(c))).join('');resultCount.textContent=`${rows.length} شهادة متاحة`;emptyState.style.display=rows.length?'none':'block'}
+    function render(){
+      const q=normalizeText(searchInput.value);
+      if(!q){
+        programGrid.innerHTML='';
+        resultCount.textContent='اكتب في البحث لعرض الشهادات';
+        emptyState.innerHTML='<b>ابحث عن الشهادة التي تناسبك</b><br/>اكتب اسم الشهادة أو التخصص أو المجال المهني في خانة البحث لعرض النتائج.';
+        emptyState.style.display='block';
+        return;
+      }
+      const rows=getFiltered();
+      programGrid.innerHTML=rows.map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
+      resultCount.textContent=`${rows.length} شهادة متاحة`;
+      if(rows.length){
+        emptyState.style.display='none';
+      }else{
+        emptyState.innerHTML='<b>لم نجد شهادة مطابقة</b><br/>جرّب كلمة بحث أخرى أو غيّر الكلية أو المجال المهني.';
+        emptyState.style.display='block';
+      }
+    }
     searchInput.addEventListener('input',render);collegeFilter.addEventListener('change',render);fieldFilter.addEventListener('change',render);
     document.getElementById('resetBtn').addEventListener('click',()=>{searchInput.value='';collegeFilter.value='all';fieldFilter.value='all';render()});
     function filterByCollege(name){collegeFilter.value=name;fieldFilter.value='all';searchInput.value='';render();document.getElementById('catalog').scrollIntoView()}
