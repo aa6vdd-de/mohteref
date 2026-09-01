@@ -947,6 +947,67 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 </div>
 </article>
 
+
+<article class="store-card" data-store-category="training">
+<div class="store-card-cover offer-cover"><img alt="ملصق AIG الذكاء الاصطناعي التوليدي" src="assets/AIG-2026.png"/></div>
+<div class="store-card-body">
+<div class="offer-logo-line"><img alt="شعار AIG" src="assets/AIG-2026.png"/><b>AIG</b></div>
+<div class="store-tags"><span>برنامج مهني</span><span>ذكاء اصطناعي</span></div>
+<h3>الذكاء الاصطناعي التوليدي</h3>
+<div class="store-code">AIG - Artificial Intelligence Generative</div>
+<div class="store-price"><strong>1,049 ر.س</strong></div>
+<button class="store-buy" onclick="chooseStoreProduct('AIG')">سجّل الآن</button>
+</div>
+</article>
+
+<article class="store-card" data-store-category="training">
+<div class="store-card-cover offer-cover"><img alt="ملصق FF استشراف المستقبل" src="assets/FF-2026.png"/></div>
+<div class="store-card-body">
+<div class="offer-logo-line"><img alt="شعار FF" src="assets/FF-2026.png"/><b>FF</b></div>
+<div class="store-tags"><span>برنامج مهني</span><span>استشراف المستقبل</span></div>
+<h3>استشراف المستقبل</h3>
+<div class="store-code">FF - Future Forecasting</div>
+<div class="store-price"><strong>1,049 ر.س</strong></div>
+<button class="store-buy" onclick="chooseStoreProduct('FF')">سجّل الآن</button>
+</div>
+</article>
+
+<article class="store-card" data-store-category="training">
+<div class="store-card-cover offer-cover"><img alt="ملصق HRM إدارة الموارد البشرية" src="assets/HRM-2026.png"/></div>
+<div class="store-card-body">
+<div class="offer-logo-line"><img alt="شعار HRM" src="assets/HRM-2026.png"/><b>HRM</b></div>
+<div class="store-tags"><span>برنامج مهني</span><span>الموارد البشرية</span></div>
+<h3>إدارة الموارد البشرية</h3>
+<div class="store-code">HRM - Human Resources Management</div>
+<div class="store-price"><strong>1,049 ر.س</strong></div>
+<button class="store-buy" onclick="chooseStoreProduct('HRM')">سجّل الآن</button>
+</div>
+</article>
+
+<article class="store-card" data-store-category="training">
+<div class="store-card-cover offer-cover"><img alt="ملصق TOT تدريب المدربين" src="assets/TOT-2026.png"/></div>
+<div class="store-card-body">
+<div class="offer-logo-line"><img alt="شعار TOT" src="assets/TOT-2026.png"/><b>TOT</b></div>
+<div class="store-tags"><span>برنامج مهني</span><span>تدريب المدربين</span></div>
+<h3>تدريب المدربين</h3>
+<div class="store-code">TOT - Training of Trainers</div>
+<div class="store-price"><strong>1,049 ر.س</strong></div>
+<button class="store-buy" onclick="chooseStoreProduct('TOT')">سجّل الآن</button>
+</div>
+</article>
+
+<article class="store-card" data-store-category="training">
+<div class="store-card-cover offer-cover"><img alt="ملصق CGA تطبيقات حوكمة الشركات" src="assets/CGA-2026.png"/></div>
+<div class="store-card-body">
+<div class="offer-logo-line"><img alt="شعار CGA" src="assets/CGA-2026.png"/><b>CGA</b></div>
+<div class="store-tags"><span>برنامج مهني</span><span>حوكمة الشركات</span></div>
+<h3>تطبيقات حوكمة الشركات</h3>
+<div class="store-code">CGA - Corporate Governance Applications</div>
+<div class="store-price"><strong>1,049 ر.س</strong></div>
+<button class="store-buy" onclick="chooseStoreProduct('CGA')">سجّل الآن</button>
+</div>
+</article>
+
 <article class="store-card" data-store-category="training">
 <div class="store-card-cover offer-cover"><span class="store-discount">خصم 27%</span><img alt="ملصق CBP-AI" src="assets/CBP-AI-offer.png"/></div>
 <div class="store-card-body">
@@ -1248,6 +1309,11 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 
     // متجر محترف: بطاقة العروض الرئيسية التفاعلية
     const storeHeroOffers=[
+      {code:'AIG',title:'الذكاء الاصطناعي التوليدي',type:'برنامج مهني',oldPrice:'',newPrice:'1,049 ر.س',save:'',discount:'',image:'assets/AIG-2026.png'},
+      {code:'FF',title:'استشراف المستقبل',type:'برنامج مهني',oldPrice:'',newPrice:'1,049 ر.س',save:'',discount:'',image:'assets/FF-2026.png'},
+      {code:'HRM',title:'إدارة الموارد البشرية',type:'برنامج مهني',oldPrice:'',newPrice:'1,049 ر.س',save:'',discount:'',image:'assets/HRM-2026.png'},
+      {code:'TOT',title:'تدريب المدربين',type:'برنامج مهني',oldPrice:'',newPrice:'1,049 ر.س',save:'',discount:'',image:'assets/TOT-2026.png'},
+      {code:'CGA',title:'تطبيقات حوكمة الشركات',type:'برنامج مهني',oldPrice:'',newPrice:'1,049 ر.س',save:'',discount:'',image:'assets/CGA-2026.png'},
       {code:'CBP-LS',title:'شهادة محترف أعمال معتمد في القيادة الإدارية',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'500 ر.س',save:'وفر 510 ر.س',discount:'خصم 50%',image:'assets/CBP-LS-offer.png'},
       {code:'CBP-CS',title:'شهادة محترف أعمال معتمد في خدمة العملاء',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'500 ر.س',save:'وفر 510 ر.س',discount:'خصم 50%',image:'assets/CBP-CS-offer.png'},
       {code:'CBP-S',title:'شهادة محترف أعمال معتمد في المبيعات',type:'اختبار شهادة احترافية',oldPrice:'1,010 ر.س',newPrice:'500 ر.س',save:'وفر 510 ر.س',discount:'خصم 50%',image:'assets/CBP-S-offer.png'},
