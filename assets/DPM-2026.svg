@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+<defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8fc8c2"/><stop offset=".44" stop-color="#67aeb4"/><stop offset="1" stop-color="#255e8e"/></linearGradient>
+ <pattern id="dots" width="21" height="21" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.5" fill="#fff" opacity=".95"/></pattern>
+ <style>.ar{font-family:Arial,Tahoma,sans-serif;font-weight:700;fill:white}.code{font-family:Arial,sans-serif;font-size:148px;font-weight:800;fill:white}.en{font-family:Arial,sans-serif;font-size:48px;font-weight:700;fill:white}</style>
+</defs>
+<rect width="1200" height="1200" fill="url(#g)"/>
+<path d="M0 0h360C330 170 260 330 0 410Z" fill="url(#dots)" opacity=".9"/>
+<g opacity=".09" fill="none" stroke="#155278" stroke-width="11"><path d="M500 20h410l-95 1160H420z"/><path d="M490 185h350v180H490zM480 480h315v170H480zM470 735h280v150H470z"/></g>
+<!-- simple white mohteref-style mark -->
+<g transform="translate(600 125)" stroke="#fff" fill="none" stroke-width="10" stroke-linecap="round"><circle cx="0" cy="-50" r="20" fill="#fff" stroke="none"/><path d="M-82 20h55l27-37 29 37h55"/><path d="M-25 1l25 25 48-53"/></g>
+<text x="600" y="205" text-anchor="middle" class="ar" font-size="40">محترف</text><text x="600" y="245" text-anchor="middle" class="en" font-size="22" letter-spacing="12">mohteref</text>
+<text x="600" y="510" text-anchor="middle" class="ar" font-size="52px" direction="rtl">الأدوات الرقمية في إدارة المشاريع</text>
+<text x="600" y="720" text-anchor="middle" class="code">DPM -</text>
+<text x="600" y="790" text-anchor="middle" class="en">Digital Tools in Project</text><text x="600" y="858" text-anchor="middle" class="en">Management</text>
+</svg>
