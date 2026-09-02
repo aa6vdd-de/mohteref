@@ -1550,7 +1550,7 @@ body.page-home-all main{
     function hrdfBlock(code){
       const amount=hrdfSupport[code];
       if(!amount) return '';
-      return `<div class="home-price-row"><span class="home-price">${formatSar(amount)}</span><span class="home-refund-badge"></span></div>`;
+      return `<div class="home-price-row"><span class="home-price">${formatSar(amount)}</span><span class="home-refund-badge">مستردة من هدف</span></div>`;
     }
 
 const certificates = [
@@ -1737,7 +1737,7 @@ function homeHrdfInfo(code){
   const amount = hrdfSupport && hrdfSupport[code];
   if(!amount) return '';
   return `<div class="home-hrdf-info">
-    <span class="home-hrdf-label">✓ </span>
+    <span class="home-hrdf-label">✓ مستردة من هدف</span>
     <span class="home-hrdf-price">${formatSar(amount)}</span>
   </div>`;
 }
