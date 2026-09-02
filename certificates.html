@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
 <meta content="منصة مركز محترف للشهادات الاحترافية" name="description"/>
-<title>الشهادات الاحترافية والبرامج المهنية | مركز محترف</title>
+<title>جميع الشهادات الاحترافية | مركز محترف</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -1011,9 +1011,22 @@ body.page-home-all main{
 .latest-sale-price span{color:#55737d;font-size:13px;font-weight:800}
 .latest-sale-price strong{color:#08717c;font-size:22px;font-weight:900;direction:ltr}
 
+
+
+/* ===== صفحة جميع الشهادات المستقلة ===== */
+body.page-certificates-all main > *{display:none!important}
+body.page-certificates-all main > #catalog{display:block!important}
+body.page-certificates-all #catalog{padding-top:76px;background:linear-gradient(180deg,#f7fbfc 0%,#fff 100%)}
+body.page-certificates-all #catalog .section-head{margin-bottom:26px}
+body.page-certificates-all #catalog .catalog-panel{box-shadow:0 12px 38px rgba(10,59,83,.07)}
+body.page-certificates-all .all-cert-hero{display:block!important;background:linear-gradient(125deg,#082c42,#0c5966 58%,#0f8e9b);color:#fff;padding:54px 0 48px}
+body.page-certificates-all .all-cert-hero h1{font-size:clamp(34px,5vw,56px);margin:0 0 10px;font-weight:900}
+body.page-certificates-all .all-cert-hero p{margin:0;max-width:760px;line-height:1.9;color:rgba(255,255,255,.88)}
+body.page-certificates-all .all-cert-back{display:inline-flex;margin-top:18px;padding:10px 16px;border:1px solid rgba(255,255,255,.3);border-radius:999px;color:#fff;font-weight:800}
+@media(max-width:760px){body.page-certificates-all #catalog{padding-top:48px}.all-cert-hero{padding:38px 0 34px}}
 </style>
 </head>
-<body class="page-home-all">
+<body class="page-certificates-all">
 <header class="site-header" id="siteHeader">
 <div class="container header-inner">
 <a aria-label="العودة إلى صفحة اختيار التخصص" class="brand" href="index.html">
@@ -1028,6 +1041,13 @@ body.page-home-all main{
 </div>
 </header>
 <main>
+<section class="all-cert-hero">
+<div class="container">
+<h1>جميع الشهادات الاحترافية</h1>
+<p>كل الشهادات والبرامج المتاحة في مركز محترف في صفحة واحدة، مع إمكانية البحث حسب اسم الشهادة أو الكلية أو التخصص.</p>
+<a class="all-cert-back" href="index.html">← العودة إلى الرئيسية</a>
+</div>
+</section>
 <section class="hero" id="home">
 <div class="slides">
 <article class="slide active">
@@ -1176,10 +1196,10 @@ body.page-home-all main{
 <section class="section soft" id="catalog">
 <div class="container">
 <div class="section-head">
-<div class="section-title"><small>الدليل الكامل</small><h2>جميع الشهادات الاحترافية</h2><p>ابحث عن شهادة معينة، أو اختر الكلية والتخصص، ثم اضغط على زر البحث لعرض النتائج.</p></div>
+<div class="section-title"><small>الدليل الكامل</small><h2>جميع الشهادات الاحترافية</h2><p>استعرض جميع الشهادات والبرامج الاحترافية المتاحة في مركز محترف، أو استخدم البحث والتصفية للوصول إلى البرنامج المناسب.</p></div>
 </div>
 <div class="catalog-panel">
-<div class="selection-banner" id="selectionBanner"><span id="selectionText"></span><a href="index.html">تغيير الكلية أو التخصص</a></div>
+<div class="selection-banner" id="selectionBanner"><span id="selectionText"></span><a href="certificates.html">إعادة عرض جميع الشهادات</a></div>
 <div class="filters">
 <div class="field"><label for="searchInput">البحث عن شهادة</label><input id="searchInput" placeholder="مثال: التسويق، CBP-M، إدارة المشاريع..." type="search"/></div>
 <div class="field"><label for="collegeFilter">الكلية</label><select id="collegeFilter"><option value="all">اختر الكلية</option></select></div>
@@ -1778,6 +1798,16 @@ function cardTemplate(c,index){
       const majors=c.majors.slice(0,3);
       return `<article class="program-card"><div class="program-cover"><div class="cover-top"><span class="program-code">${c.code}</span></div><b>${c.field}</b></div><div class="program-body"><h3>${c.title}</h3><p class="program-summary">${c.summary}</p><div class="program-meta"><span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span></div><div class="latest-sale-price"><span>سعر البرنامج</span><strong>2,999 ر.س</strong></div><div class="suitable">تناسب تخصصات مثل:</div><div class="major-chips">${majors.map(m=>`<span>${m}</span>`).join('')}</div><div class="card-buttons"><button class="details" onclick="document.getElementById('store').scrollIntoView({behavior:'smooth'})">عرض في المتجر</button><button class="register" onclick="openWhatsAppChannel()">التسجيل</button></div></div></article>`;
     }
+    const catalogItems = [
+      ...certificates.map((item,index)=>({...item,_catalogType:'certificate',_catalogIndex:index})),
+      ...latestProfessionalPrograms.map(item=>({
+        ...item,
+        colleges:['جميع الكليات'],
+        skills:[],
+        fit:'برنامج احترافي متاح عبر مركز محترف.',
+        _catalogType:'latest'
+      }))
+    ];
     const featuredCodes=['CBP-S','CBP-LS','CBP-M','CBP-LTS','CBP-PM','CBP-CS'];
     featuredGrid.innerHTML=featuredCodes.map(code=>{
       const index=certificates.findIndex(c=>c.code===code);
@@ -1790,15 +1820,15 @@ function cardTemplate(c,index){
       const college=collegeFilter.value;
       const major=majorFilter.value;
 
-      return certificates.filter(c=>{
+      return catalogItems.filter(c=>{
         const hay=normalizeText([
           c.code,c.title,c.field,c.summary,
-          ...c.colleges,...c.majors,...c.skills
+          ...(c.colleges||[]),...(c.majors||[]),...(c.skills||[])
         ].join(' '));
 
         const textMatch=(!q || hay.includes(q));
-        const collegeMatch=(college==='all'||c.colleges.includes(college)||c.colleges.includes('جميع الكليات'));
-        const majorMatch=(major==='all'||c.majors.includes(major));
+        const collegeMatch=(college==='all'||(c.colleges||[]).includes(college)||(c.colleges||[]).includes('جميع الكليات'));
+        const majorMatch=(major==='all'||(c.majors||[]).includes(major));
 
         return textMatch && collegeMatch && majorMatch;
       });
@@ -1814,6 +1844,13 @@ function cardTemplate(c,index){
 
     function render(){
       if(!catalogSearchActivated){
+        if(document.body.classList.contains('page-certificates-all')){
+          programGrid.innerHTML=catalogItems.map(c=>c._catalogType==='latest'?latestProgramCard(c):cardTemplate(c,c._catalogIndex)).join('');
+          resultCount.textContent=`${catalogItems.length} شهادة وبرنامج متاح`;
+          emptyState.style.display='none';
+          animateCatalogResults();
+          return;
+        }
         programGrid.innerHTML='';
         programGrid.classList.remove('search-reveal');
         resultCount.textContent='اكتب اسم الشهادة أو اختر الكلية أو التخصص ثم اضغط بحث';
@@ -1827,6 +1864,13 @@ function cardTemplate(c,index){
       const major=majorFilter.value;
 
       if(!q && college==='all' && major==='all'){
+        if(document.body.classList.contains('page-certificates-all')){
+          programGrid.innerHTML=catalogItems.map(c=>c._catalogType==='latest'?latestProgramCard(c):cardTemplate(c,c._catalogIndex)).join('');
+          resultCount.textContent=`${catalogItems.length} شهادة وبرنامج متاح`;
+          emptyState.style.display='none';
+          animateCatalogResults();
+          return;
+        }
         programGrid.innerHTML='';
         resultCount.textContent='حدد معيار البحث أولًا';
         emptyState.innerHTML='<b>حدد معيار البحث</b><br/>اكتب اسم شهادة أو اختر كلية أو تخصصًا واحدًا على الأقل، ثم اضغط «بحث».';
@@ -1835,7 +1879,7 @@ function cardTemplate(c,index){
       }
 
       const rows=getFiltered();
-      programGrid.innerHTML=rows.map(c=>cardTemplate(c,certificates.indexOf(c))).join('');
+      programGrid.innerHTML=rows.map(c=>c._catalogType==='latest'?latestProgramCard(c):cardTemplate(c,c._catalogIndex)).join('');
       resultCount.textContent=`${rows.length} شهادة متاحة`;
 
       if(rows.length){
