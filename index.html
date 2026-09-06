@@ -1911,7 +1911,7 @@ function cardTemplate(c,index){
     function openModal(index){const c=certificates[index];document.getElementById('modalCode').textContent=c.code;document.getElementById('modalTitle').textContent=c.title;document.getElementById('modalField').textContent=c.field;const hrdf=hrdfSupport[c.code];document.getElementById('modalMeta').innerHTML=`<span>${c.issuer}</span><span>${c.hours} ساعة</span><span>عن بُعد</span><span>عربي / إنجليزي</span>${hrdf?`<span class="hrdf-modal-badge">هدف: حتى ${formatSar(hrdf)}</span>`:''}`;document.getElementById('modalSummary').textContent=c.summary;document.getElementById('modalMajors').innerHTML=[...c.colleges,...c.majors].map(x=>`<li>${x}</li>`).join('');document.getElementById('modalSkills').innerHTML=c.skills.map(x=>`<li>${x}</li>`).join('');document.getElementById('modalFit').textContent=c.fit;backdrop.classList.add('show');document.body.style.overflow='hidden'}
     function closeModal(){backdrop.classList.remove('show');document.body.style.overflow=''}
     document.getElementById('closeModal').onclick=closeModal;document.getElementById('closeModalBottom').onclick=closeModal;backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-    function openWhatsAppChannel(){window.open('https://whatsapp.com/channel/0029VayvV5C3wtbC1jI9od2v','_blank','noopener,noreferrer')}
+    function openWhatsAppChannel(){openMohterefWhatsAppGeneric();}
 
     const slides=[...document.querySelectorAll('.slide')],dots=[...document.querySelectorAll('.slide-dot')];let slideIndex=0,slideTimer;
     function showSlide(i){slideIndex=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===slideIndex));dots.forEach((d,n)=>d.classList.toggle('active',n===slideIndex))}
@@ -2054,12 +2054,13 @@ function cardTemplate(c,index){
 
     function chooseStoreProduct(code){
       let toast=document.getElementById('storeToast');
-      if(!toast){
-        toast=document.createElement('div');
-        toast.id='storeToast';
-        toast.className='store-toast';
-        document.body.appendChild(toast);
-      }
+      if(!toast){toast=document.createElement('div');toast.id='storeToast';toast.className='store-toast';document.body.appendChild(toast);}
+      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[(code||'').toUpperCase()] || code} — سيتم فتح واتساب مركز محترف.`;
+      toast.classList.add('show');
+      clearTimeout(window.__storeToastTimer);
+      window.__storeToastTimer=setTimeout(()=>toast.classList.remove('show'),2500);
+      setTimeout(()=>openMohterefWhatsApp(code),180);
+    }
       toast.textContent=`تم اختيار ${code} — سيتم فتح قناة التسجيل الحالية.`;
       toast.classList.add('show');
       clearTimeout(window.__storeToastTimer);
@@ -2098,5 +2099,75 @@ function cardTemplate(c,index){
   },{threshold:.12,rootMargin:'0px 0px -7% 0px'});
   document.querySelectorAll('.reveal-on-scroll').forEach(el=>observer.observe(el));
 })();
-</script></body>
+</script>
+<script>
+/* ===== WhatsApp registration – مركز محترف ===== */
+const MOHTEREF_WHATSAPP = '966144567261';
+const MOHTEREF_PRODUCT_NAMES = {
+  'CBP-M':'شهادة محترف أعمال معتمد في التسويق',
+  'CBP-LS':'شهادة محترف أعمال معتمد في القيادة الإدارية',
+  'CBP-S':'شهادة محترف أعمال معتمد في المبيعات',
+  'CBP-CS':'شهادة محترف أعمال معتمد في خدمة العملاء',
+  'CBP-BC':'شهادة محترف أعمال معتمد في اتصالات الأعمال',
+  'CBP-BE':'شهادة محترف أعمال معتمد في سلوكيات الأعمال',
+  'CBP-PM':'شهادة محترف أعمال معتمد في إدارة المشاريع',
+  'CBP-LTS':'شهادة محترف أعمال معتمد في القيادة خلال التغيير',
+  'CBP-CM':'شهادة محترف أعمال معتمد في إدارة النزاعات',
+  'CBP-HR':'شهادة محترف أعمال معتمد في الموارد البشرية',
+  'CBP-CT':'شهادة أخصائي تكنولوجيا الحاسب الآلي',
+  'CBP-AB':'شهادة المحاسبة والميزانية',
+  'PMP':'شهادة محترف إدارة المشاريع PMP',
+  'IC3':'الشهادة الدولية للحاسب والإنترنت IC3',
+  'MOS':'شهادة Microsoft Office Specialist',
+  'SEC+':'شهادة أمن المعلومات Security+',
+  'SECURITY+':'شهادة أمن المعلومات Security+',
+  'NETWORK+':'شهادة Network+',
+  'A+':'شهادة CompTIA A+',
+  'CYSA+':'شهادة CompTIA CySA+',
+  'OSHA':'برنامج OSHA',
+  'NEBOSH-HSA':'برنامج NEBOSH HSA',
+  'AIG':'الذكاء الاصطناعي التوليدي AIG',
+  'FF':'استشراف المستقبل FF',
+  'HRM':'إدارة الموارد البشرية HRM',
+  'TOT':'تدريب المدربين TOT',
+  'CGA':'تطبيقات حوكمة الشركات CGA',
+  'H2O':'المنظمة السعيدة H2O',
+  'ES':'السكرتارية التنفيذية ES',
+  'NHP':'البرنامج الوطني للسعادة والإيجابية NHP',
+  'ECM':'الإدارة الفعّالة للحشود ECM',
+  'MPM':'المنهجيات الحديثة في إدارة المشاريع MPM',
+  'DPM':'الأدوات الرقمية في إدارة المشاريع DPM',
+  'DMKT':'التسويق الرقمي DMKT',
+  'BS':'استراتيجية العلامة التجارية BS',
+  'CBP-AI':'برنامج الذكاء الاصطناعي',
+  'POWER-BI':'برنامج تحليل البيانات باستخدام Power BI',
+  'EXCEL':'برنامج Excel المجاني',
+  'ELS-MED':'كتاب اللغة الإنجليزية للتخصصات الصحية',
+  'ELS-ENG':'كتاب اللغة الإنجليزية للتخصصات الهندسية',
+  'ELS-GEN':'كتاب اللغة الإنجليزية العام'
+};
+function openMohterefWhatsApp(product){
+  const clean=(product||'').toString().trim();
+  const display=MOHTEREF_PRODUCT_NAMES[clean.toUpperCase()] || clean || 'أحد برامج متجر محترف';
+  const msg=`السلام عليكم، أرغب بالتسجيل في ${display} عن طريق متجر محترف.`;
+  window.open(`https://wa.me/${MOHTEREF_WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');
+}
+function openMohterefWhatsAppGeneric(){
+  const msg='السلام عليكم، أرغب بالتسجيل في أحد برامج متجر محترف، وأرغب بمعرفة التفاصيل.';
+  window.open(`https://wa.me/${MOHTEREF_WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');
+}
+function openCardWhatsApp(el){
+  const card=el.closest('.program-card,.professional-store-card,.free-store-card,.store-card');
+  let code=''; let title='';
+  if(card){
+    const codeEl=card.querySelector('.program-code,.store-code,.professional-brand-row b,.free-brand-row b,.offer-logo-line b');
+    const titleEl=card.querySelector('h3');
+    code=codeEl?codeEl.textContent.trim():'';
+    title=titleEl?titleEl.textContent.trim():'';
+  }
+  openMohterefWhatsApp(code || title || 'أحد برامج متجر محترف');
+}
+</script>
+
+</body>
 </html>
