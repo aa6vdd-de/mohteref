@@ -1524,13 +1524,14 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
     }));
 
     function chooseStoreProduct(code){
+      const TEST_FORM_URL='https://forms.gle/sV32usnuK3XhGXpdA';
       let toast=document.getElementById('storeToast');
       if(!toast){toast=document.createElement('div');toast.id='storeToast';toast.className='store-toast';document.body.appendChild(toast);}
-      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[(code||'').toUpperCase()] || code} — سيتم فتح واتساب مركز محترف.`;
+      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[(code||'').toUpperCase()] || code} — سيتم فتح نموذج التسجيل.`;
       toast.classList.add('show');
       clearTimeout(window.__storeToastTimer);
       window.__storeToastTimer=setTimeout(()=>toast.classList.remove('show'),2500);
-      setTimeout(()=>openMohterefWhatsApp(code),180);
+      setTimeout(()=>window.open(TEST_FORM_URL,'_blank','noopener,noreferrer'),180);
     }
 
   </script>
