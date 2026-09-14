@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#0b2030"/><stop offset="1" stop-color="#123e52"/></linearGradient></defs>
+<rect width="1200" height="675" rx="28" fill="url(#g)"/>
+<circle cx="1050" cy="120" r="170" fill="#13a7b7" opacity=".12"/>
+<circle cx="110" cy="590" r="150" fill="#13a7b7" opacity=".10"/>
+<text x="70" y="115" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#59d6df">OSHA</text>
+<text x="70" y="240" font-family="Arial,sans-serif" font-size="48" font-weight="700" fill="#ffffff">الصحة والسلامة المهنية</text>
+<text x="70" y="305" font-family="Arial,sans-serif" font-size="34" fill="#d9eef1">بمعايير الأوشا الأمريكية</text>
+<rect x="70" y="390" width="330" height="66" rx="33" fill="#13a7b7"/>
+<text x="235" y="433" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#fff">تدريب + اختبار</text>
+<text x="70" y="545" font-family="Arial,sans-serif" font-size="26" fill="#d9eef1">مركز محترف</text>
+</svg>
