@@ -1092,16 +1092,16 @@ body.page-home-all main{
 <div>
 <span class="hero-kicker">📋 برنامج هذا الشهر</span>
 <h1>استعد لشهادة<br/><em>إدارة المشاريع</em></h1>
-<p>تدريب واختبار شهادة محترف أعمال معتمد في إدارة المشاريع CBP-PM بسعر 1,699 ر.س.</p>
+<p>تدريب واختبار شهادة محترف أعمال معتمد في إدارة المشاريع CBP-PM بسعر 2,499 ر.س.</p>
 <div class="hero-actions">
-<a class="hero-primary" href="store.html">سجّل في البرنامج</a>
+<a class="hero-primary" href="https://forms.gle/raQkbKqZu2Roumfy5" target="_blank" rel="noopener noreferrer">سجّل في البرنامج</a>
 <a class="hero-secondary" href="store.html#store-certificates">عرض كل العروض</a>
 </div>
 </div>
 <div class="visual offer-slide-visual">
 <div class="offer-poster-frame">
 <img alt="عرض CBP-PM إدارة المشاريع" src="assets/CBP-PM-store.webp" loading="lazy" decoding="async">
-<span class="offer-floating-price">1,699 ر.س</span>
+<span class="offer-floating-price">2,499 ر.س</span>
 </div>
 </div>
 </div>
@@ -1112,13 +1112,13 @@ body.page-home-all main{
 <h1>طوّر معرفتك في<br/><em>السلامة المهنية</em></h1>
 <p>تدريب واختبار الصحة والسلامة المهنية بمعايير الأوشا الأمريكية OSHA بسعر 1,299 ر.س.</p>
 <div class="hero-actions">
-<a class="hero-primary" href="store.html">سجّل في البرنامج</a>
+<a class="hero-primary" href="https://forms.gle/byixnrurDG765Adz8" target="_blank" rel="noopener noreferrer">سجّل في البرنامج</a>
 <a class="hero-secondary" href="store.html#store-certificates">عرض كل العروض</a>
 </div>
 </div>
 <div class="visual offer-slide-visual">
 <div class="offer-poster-frame">
-<img alt="عرض OSHA" src="assets/OSHA-store.svg" loading="lazy" decoding="async">
+<img alt="عرض OSHA" src="assets/OSHA-store.webp" loading="lazy" decoding="async">
 <span class="offer-floating-price">1,299 ر.س</span>
 </div>
 </div>
@@ -1216,7 +1216,7 @@ body.page-home-all main{
 <h3 id="storeHeroTitle">محترف أعمال معتمد في إدارة المشاريع</h3>
 <div class="store-showcase-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
 <div class="store-showcase-price">
-<strong id="storeHeroNewPrice">1,699 ر.س</strong>
+<strong id="storeHeroNewPrice">2,499 ر.س</strong>
 <del id="storeHeroOldPrice" style="display:none"></del>
 <span id="storeHeroSave" style="display:none"></span>
 </div>
@@ -1967,13 +1967,21 @@ function cardTemplate(c,index){
     }));
 
     function chooseStoreProduct(code){
+      const SPECIAL_FORMS={
+        'CBP-PM':'https://forms.gle/raQkbKqZu2Roumfy5',
+        'OSHA':'https://forms.gle/byixnrurDG765Adz8'
+      };
+      const normalized=(code||'').toUpperCase();
+      const specialUrl=SPECIAL_FORMS[normalized];
       let toast=document.getElementById('storeToast');
       if(!toast){toast=document.createElement('div');toast.id='storeToast';toast.className='store-toast';document.body.appendChild(toast);}
-      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[(code||'').toUpperCase()] || code} — سيتم فتح واتساب مركز محترف.`;
+      toast.textContent=specialUrl
+        ? `تم اختيار ${MOHTEREF_PRODUCT_NAMES[normalized] || code} — سيتم فتح نموذج التسجيل.`
+        : `تم اختيار ${MOHTEREF_PRODUCT_NAMES[normalized] || code} — سيتم فتح واتساب مركز محترف.`;
       toast.classList.add('show');
       clearTimeout(window.__storeToastTimer);
       window.__storeToastTimer=setTimeout(()=>toast.classList.remove('show'),2500);
-      setTimeout(()=>openMohterefWhatsApp(code),180);
+      setTimeout(()=>specialUrl ? window.open(specialUrl,'_blank','noopener,noreferrer') : openMohterefWhatsApp(code),180);
     }
 
   </script>

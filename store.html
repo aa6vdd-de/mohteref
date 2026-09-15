@@ -872,7 +872,7 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 <h3 id="storeHeroTitle">محترف أعمال معتمد في إدارة المشاريع</h3>
 <div class="store-showcase-type" id="storeHeroType">تدريب + اختبار شهادة احترافية</div>
 <div class="store-showcase-price">
-<strong id="storeHeroNewPrice">1,699 ر.س</strong>
+<strong id="storeHeroNewPrice">2,499 ر.س</strong>
 <del id="storeHeroOldPrice" style="display:none"></del>
 <span id="storeHeroSave" style="display:none"></span>
 </div>
@@ -1126,15 +1126,15 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 <div class="store-tags"><span>تدريب + اختبار</span><span>مستردة من هدف</span></div>
 <h3>شهادة محترف أعمال معتمد في إدارة المشاريع</h3>
 <div class="store-code">CBP-PM</div>
-<div class="store-price"><strong>1,699 ر.س</strong></div>
+<div class="store-price"><strong>2,499 ر.س</strong></div>
 <button class="store-buy" onclick="chooseStoreProduct('CBP-PM')">اشترِ / سجّل الآن</button>
 </div>
 </article>
 
 <article class="store-card" data-store-category="bundle">
-<div class="store-card-cover offer-cover"><img alt="ملصق OSHA الصحة والسلامة المهنية" src="assets/OSHA-store.svg" loading="lazy" decoding="async"></div>
+<div class="store-card-cover offer-cover"><img alt="ملصق OSHA الصحة والسلامة المهنية" src="assets/OSHA-store.webp" loading="lazy" decoding="async"></div>
 <div class="store-card-body">
-<div class="offer-logo-line"><img alt="شعار OSHA" src="assets/OSHA-store.svg" loading="lazy" decoding="async"><b>OSHA</b></div>
+<div class="offer-logo-line"><img alt="شعار OSHA" src="assets/OSHA-store.webp" loading="lazy" decoding="async"><b>OSHA</b></div>
 <div class="store-tags"><span>تدريب + اختبار</span><span>الصحة والسلامة المهنية</span></div>
 <h3>الصحة والسلامة المهنية بمعايير الأوشا الأمريكية</h3>
 <div class="store-code">OSHA</div>
@@ -1439,8 +1439,8 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
       {code:'CBP-AB',title:'شهادة محترف أعمال معتمد في المحاسبة والميزانية',type:'اختبار فقط — مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/CBP-AB-store.webp'},
       {code:'CBP-LTS',title:'شهادة محترف أعمال معتمد في القيادة خلال التغيير',type:'اختبار فقط — مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/CBP-LTS-store.webp'},
       {code:'CBP-CM',title:'شهادة محترف أعمال معتمد في إدارة النزاعات',type:'اختبار فقط — مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/CBP-CM-store.webp'},
-      {code:'CBP-PM',title:'شهادة محترف أعمال معتمد في إدارة المشاريع',type:'تدريب + اختبار — مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/CBP-PM-store.webp'},
-      {code:'OSHA',title:'الصحة والسلامة المهنية بمعايير الأوشا الأمريكية',type:'تدريب + اختبار',oldPrice:'',newPrice:'1,299 ر.س',save:'',discount:'',image:'assets/OSHA-store.svg'},
+      {code:'CBP-PM',title:'شهادة محترف أعمال معتمد في إدارة المشاريع',type:'تدريب + اختبار — مستردة من هدف',oldPrice:'',newPrice:'2,499 ر.س',save:'',discount:'',image:'assets/CBP-PM-store.webp'},
+      {code:'OSHA',title:'الصحة والسلامة المهنية بمعايير الأوشا الأمريكية',type:'تدريب + اختبار',oldPrice:'',newPrice:'1,299 ر.س',save:'',discount:'',image:'assets/OSHA-store.webp'},
       {code:'CBP-M',title:'شهادة محترف أعمال معتمد في التسويق',type:'اختبار فقط — مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/CBP-M-store.webp'},
       {code:'HT',title:'شهادة السياحة والضيافة',type:'اختبار فقط — غير مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/HT-store.webp'},
       {code:'BM',title:'شهادة إدارة الأعمال',type:'اختبار فقط — غير مستردة من هدف',oldPrice:'',newPrice:'1,699 ر.س',save:'',discount:'',image:'assets/BM-store.webp'},
@@ -1519,13 +1519,19 @@ body:not(.page-home) main > section:first-of-type{padding-top:72px}
 
     function chooseStoreProduct(code){
       const TEST_FORM_URL='https://forms.gle/sV32usnuK3XhGXpdA';
+      const SPECIAL_FORMS={
+        'CBP-PM':'https://forms.gle/raQkbKqZu2Roumfy5',
+        'OSHA':'https://forms.gle/byixnrurDG765Adz8'
+      };
+      const normalized=(code||'').toUpperCase();
+      const targetUrl=SPECIAL_FORMS[normalized] || TEST_FORM_URL;
       let toast=document.getElementById('storeToast');
       if(!toast){toast=document.createElement('div');toast.id='storeToast';toast.className='store-toast';document.body.appendChild(toast);}
-      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[(code||'').toUpperCase()] || code} — سيتم فتح نموذج التسجيل.`;
+      toast.textContent=`تم اختيار ${MOHTEREF_PRODUCT_NAMES[normalized] || code} — سيتم فتح نموذج التسجيل.`;
       toast.classList.add('show');
       clearTimeout(window.__storeToastTimer);
       window.__storeToastTimer=setTimeout(()=>toast.classList.remove('show'),2500);
-      setTimeout(()=>window.open(TEST_FORM_URL,'_blank','noopener,noreferrer'),180);
+      setTimeout(()=>window.open(targetUrl,'_blank','noopener,noreferrer'),180);
     }
 
   </script>
